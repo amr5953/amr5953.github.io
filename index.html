@@ -54,8 +54,8 @@ nav{background:var(--white);padding:14px 24px;display:flex;justify-content:space
 .btn-outline{background:transparent;border:2px solid var(--deep-coral);color:var(--deep-coral);padding:11px 28px;border-radius:4px;font-size:.78rem;cursor:pointer;letter-spacing:2px;text-transform:uppercase;font-weight:700;font-family:'Lato',sans-serif;transition:all .3s;}
 .btn-outline:hover{background:var(--deep-coral);color:var(--white);}
 .hero-photo{position:relative;z-index:2;}
-.photo-circle{width:360px;height:360px;border-radius:50%;background:var(--coral);overflow:hidden;border:6px solid var(--white);box-shadow:0 20px 60px rgba(232,121,106,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.photo-circle img{width:100%;height:100%;object-fit:cover;object-position:center 30%;}
+.photo-circle{width:360px;height:360px;border-radius:50%;background:var(--warm-pink);overflow:hidden;border:6px solid var(--white);box-shadow:0 20px 60px rgba(232,121,106,.3),0 0 0 10px rgba(244,165,154,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.photo-circle img{width:100%;height:100%;object-fit:cover;object-position:center 15%;}
 .photo-placeholder{color:var(--white);font-size:.9rem;text-align:center;padding:20px;}
 
 /* WELCOME */
@@ -121,16 +121,34 @@ nav{background:var(--white);padding:14px 24px;display:flex;justify-content:space
 .travel-banner h2{font-family:'Playfair Display',serif;font-size:3rem;font-weight:900;margin-bottom:12px;}
 .travel-banner p{color:var(--mid);font-style:italic;font-size:1rem;max-width:600px;margin:0 auto;line-height:1.8;}
 
-/* WORLD MAP */
-.map-section{padding:50px 40px 20px;background:var(--white);}
-.map-section h3{font-family:'Dancing Script',cursive;font-size:1.8rem;color:var(--deep-coral);text-align:center;margin-bottom:24px;}
-.map-wrap{position:relative;max-width:900px;margin:0 auto;}
-.world-map-svg{width:100%;height:auto;display:block;}
-.map-pin{cursor:pointer;transition:transform .2s;}
-.map-pin:hover{transform:scale(1.3);}
-.pin-circle{fill:var(--deep-coral);stroke:var(--white);stroke-width:2;}
-.pin-dot{fill:var(--gold);}
-.map-tooltip{position:absolute;background:var(--dark);color:var(--white);padding:6px 12px;border-radius:4px;font-size:.78rem;font-family:'Lato',sans-serif;pointer-events:none;white-space:nowrap;display:none;z-index:10;}
+/* GALLERY */
+.gallery-section{background:var(--white);padding:40px 60px 60px;}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1000px;margin:0 auto;}
+.dest-card{border-radius:12px;overflow:hidden;cursor:pointer;box-shadow:0 4px 20px rgba(232,121,106,.12);transition:all .3s;border:2px solid transparent;}
+.dest-card:hover{transform:translateY(-6px);border-color:var(--gold);box-shadow:6px 6px 0 var(--gold);}
+.dest-cover{height:180px;position:relative;overflow:hidden;}
+.dest-cover img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
+.dest-card:hover .dest-cover img{transform:scale(1.05);}
+.dest-overlay{position:absolute;inset:0;background:rgba(0,0,0,.15);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s;}
+.dest-card:hover .dest-overlay{opacity:1;}
+.dest-flag{font-size:2.5rem;}
+.dest-info{padding:16px 18px;background:var(--white);}
+.dest-info h3{font-family:'Playfair Display',serif;font-size:1.05rem;margin-bottom:4px;}
+.dest-info p{color:var(--mid);font-size:.78rem;font-style:italic;}
+/* LIGHTBOX */
+.lightbox{display:none;position:fixed;inset:0;background:rgba(42,26,26,.85);z-index:999;align-items:center;justify-content:center;padding:20px;}
+.lightbox.open{display:flex;}
+.lightbox-inner{background:var(--white);border-radius:16px;max-width:700px;width:100%;max-height:90vh;overflow-y:auto;position:relative;padding:36px;}
+.lb-close{position:absolute;top:16px;right:16px;background:var(--pink-bg);border:none;width:36px;height:36px;border-radius:50%;font-size:1rem;cursor:pointer;color:var(--dark);font-weight:700;transition:background .3s;}
+.lb-close:hover{background:var(--coral);}
+.lb-header{display:flex;align-items:center;gap:16px;margin-bottom:16px;}
+.lb-flag{font-size:2.5rem;}
+.lb-header h3{font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:4px;}
+.lb-header p{color:var(--mid);font-size:.85rem;font-style:italic;}
+.lb-story{color:var(--mid);font-size:.9rem;line-height:1.8;margin-bottom:24px;padding-bottom:20px;border-bottom:2px solid var(--warm-pink);}
+.lb-photos{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+.lb-photo{border-radius:8px;overflow:hidden;aspect-ratio:4/3;background:var(--pink-bg);display:flex;align-items:center;justify-content:center;color:var(--mid);font-size:.78rem;text-align:center;padding:12px;}
+.lb-photo img{width:100%;height:100%;object-fit:cover;}
 
 .countries-list{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding:30px 80px 40px;}
 .country-card{background:var(--white);border-radius:4px;padding:24px 20px;text-align:center;border:2px solid transparent;box-shadow:0 4px 20px rgba(232,121,106,.08);transition:all .3s;cursor:default;}
@@ -301,14 +319,14 @@ footer .script{font-family:'Dancing Script',cursive;font-size:1.4rem;color:var(-
   <div class="wave"><svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg"><path fill="#ffffff" d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z"/></svg></div>
   <div class="welcome-section">
     <div class="polaroid">
-      <div class="polaroid-img"><img src="allee2.jpg" alt="Allee" onerror="this.parentElement.innerHTML='✈️ Travel photo<br/>coming soon!'"/></div>
+      <div class="polaroid-img"><img src="allee.jpg" alt="Allee" onerror="this.parentElement.innerHTML='✈️ Travel photo<br/>coming soon!'"/></div>
       <div class="polaroid-label">that's me! 🌸</div>
     </div>
     <div class="welcome-text">
       <div class="script">welcome!</div>
       <h2>Let's break the ice</h2>
       <p>I'm a <em>Technical GTM Consultant</em> by day and a full-time adventure seeker by heart. I believe the best version of yourself is found somewhere between a mountain summit and a really good bowl of noodles in a city you've never been to before.</p>
-      <p>In 2023, I packed my laptop and spent <em>2 months solo traveling across Europe</em> — working remotely, staying in hostels, making lifelong friends with strangers, and finding myself along the way.</p>
+      <p>In the summer of 2024, I packed my laptop and spent <em>2 months solo traveling across Europe</em> — a month in Portugal, two weeks each in Spain and Italy, working remotely from cafés, staying in hostels, making lifelong friends with strangers, and finding myself along the way.</p>
       <button class="btn" onclick="show('about')">My Full Adventure →</button>
     </div>
   </div>
@@ -339,8 +357,8 @@ footer .script{font-family:'Dancing Script',cursive;font-size:1.4rem;color:var(-
       <div class="script">a little about me</div>
       <h2>Hello, I'm Allee 🌸</h2>
       <p>I'm a curious soul who believes the best way to grow is to get a little uncomfortable. I help companies bridge the gap between technical products and the market — but my real passion? Exploring the world one country at a time.</p>
-      <p>In 2023, I took the leap and spent 2 months solo traveling across Europe with nothing but my laptop and a backpack. I stayed in Airbnbs and hostels, worked remotely from cafés in Lisbon and piazzas in Italy, made friends with strangers who became family, and found a version of myself I didn't know existed.</p>
-      <p>When I'm not traveling internationally, you'll find me hiking trails at US national parks with my dog, hunting down the best local food spots, or planning the next adventure.</p>
+      <p>In the summer of 2024, I took the leap and spent 2 months solo traveling across Europe with nothing but my laptop and a backpack. A month in Portugal exploring Lisbon, Porto and the Algarve, two weeks in Spain hitting Barcelona, Valencia and Seville, and two weeks living like a local in Florence, Italy. I worked remotely from cafés, stayed in hostels, made friends with strangers who became family, and found a version of myself I didn't know existed.</p>
+      <p>When I'm not traveling internationally, you'll find me hiking trails at US national parks with my dog Presley (yes, named after Elvis 🎸), hunting down the best local food spots, or planning the next adventure.</p>
       <button class="btn" onclick="show('travel')">See My Travels →</button>
     </div>
   </div>
@@ -364,7 +382,7 @@ footer .script{font-family:'Dancing Script',cursive;font-size:1.4rem;color:var(-
     <div class="hobby-card"><div class="hobby-banner hb1">🥾</div><div class="hobby-info"><h3>Hiking & Nature</h3><p>From national park trails to mountain summits, hiking is my moving meditation. Nothing beats earning a view with your own two feet.</p></div></div>
     <div class="hobby-card"><div class="hobby-banner hb2">🍽️</div><div class="hobby-info"><h3>Food & Culinary Exploration</h3><p>I travel with my stomach. Trying local cuisine is my favorite way to understand a new culture — from street food in Southeast Asia to tapas in Spain.</p></div></div>
     <div class="hobby-card"><div class="hobby-banner hb3">✈️</div><div class="hobby-info"><h3>International Travel</h3><p>9 countries and counting. I love immersing myself in new cultures, languages, and ways of life. Every trip changes me a little.</p></div></div>
-    <div class="hobby-card"><div class="hobby-banner hb4">🐾</div><div class="hobby-info"><h3>Dog Mom Life</h3><p>My dog is my adventure partner. Whether it's a road trip to a national park or a lazy Sunday walk, she makes everything better.</p></div></div>
+    <div class="hobby-card"><div class="hobby-banner hb4">🐾</div><div class="hobby-info"><h3>Dog Mom Life</h3><p>Presley (yes, named after Elvis 🎸) is my black lab adventure partner. Whether it's a road trip to a national park or a lazy Sunday walk, he makes everything better.</p></div></div>
     <div class="hobby-card"><div class="hobby-banner hb5">🏞️</div><div class="hobby-info"><h3>US National Parks</h3><p>Working my way through the national parks bucket list. There's incredible beauty right in our own backyard.</p></div></div>
     <div class="hobby-card"><div class="hobby-banner hb6">🎒</div><div class="hobby-info"><h3>Solo Travel & Growth</h3><p>Two months in Europe solo taught me resilience, independence, and the art of making friends with strangers. Best personal development course ever.</p></div></div>
   </div>
@@ -381,191 +399,89 @@ footer .script{font-family:'Dancing Script',cursive;font-size:1.4rem;color:var(-
     <p>From backpacking solo through Europe to exploring the jungles of Southeast Asia — each destination has left a little piece of itself with me.</p>
   </div>
 
-  <div class="map-section">
-    <h3>pinned on the map</h3>
-    <div class="map-wrap" id="mapWrap">
-      <div class="map-tooltip" id="tooltip"></div>
-      <svg class="world-map-svg" viewBox="0 0 1000 520" xmlns="http://www.w3.org/2000/svg" id="worldMap">
-        <defs>
-          <filter id="pinshadow" x="-30%" y="-30%" width="160%" height="160%">
-            <feDropShadow dx="1" dy="2" stdDeviation="2" flood-color="#8B4513" flood-opacity="0.3"/>
-          </filter>
-          <radialGradient id="pinGrad1" cx="35%" cy="30%">
-            <stop offset="0%" stop-color="#f9c5be"/>
-            <stop offset="100%" stop-color="#e8796a"/>
-          </radialGradient>
-          <radialGradient id="pinGrad2" cx="35%" cy="30%">
-            <stop offset="0%" stop-color="#fde080"/>
-            <stop offset="100%" stop-color="#c9a227"/>
-          </radialGradient>
-        </defs>
-
-        <!-- Vintage parchment background -->
-        <rect width="1000" height="520" fill="#f5ede0" rx="10"/>
-        <!-- subtle texture lines -->
-        <rect width="1000" height="520" fill="none" stroke="#e8d8c0" stroke-width="0.3" rx="10"/>
-
-        <!-- Ocean labels -->
-        <text x="100" y="200" font-family="Georgia,serif" font-size="11" fill="#b8a898" font-style="italic" opacity="0.7">Pacific Ocean</text>
-        <text x="310" y="260" font-family="Georgia,serif" font-size="10" fill="#b8a898" font-style="italic" opacity="0.7">Atlantic</text>
-        <text x="580" y="310" font-family="Georgia,serif" font-size="10" fill="#b8a898" font-style="italic" opacity="0.7">Indian Ocean</text>
-
-        <!-- NORTH AMERICA - detailed -->
-        <path d="M55,55 L75,40 L110,35 L150,38 L175,45 L195,55 L210,70 L220,90 L225,115 L222,140 L215,165 L205,188 L195,210 L182,228 L170,248 L158,265 L148,278 L138,288 L125,285 L112,275 L100,258 L88,238 L78,215 L68,190 L60,162 L54,135 L50,108 L50,80 Z" fill="#deb896" stroke="#c9956a" stroke-width="1.2"/>
-        <!-- Alaska -->
-        <path d="M55,55 L40,50 L28,58 L25,72 L35,78 L50,72 Z" fill="#deb896" stroke="#c9956a" stroke-width="1"/>
-        <!-- Greenland -->
-        <path d="M185,18 L215,12 L235,20 L240,38 L228,52 L210,56 L192,48 L182,34 Z" fill="#c8dce8" stroke="#a0b8c4" stroke-width="1"/>
-        <!-- Central America -->
-        <path d="M148,278 L160,285 L168,298 L163,315 L152,322 L140,315 L136,300 L138,288 Z" fill="#deb896" stroke="#c9956a" stroke-width="1"/>
-        <!-- Caribbean islands -->
-        <ellipse cx="195" cy="282" rx="6" ry="3" fill="#deb896" stroke="#c9956a" stroke-width="0.8"/>
-        <ellipse cx="205" cy="278" rx="4" ry="2" fill="#deb896" stroke="#c9956a" stroke-width="0.8"/>
-
-        <!-- SOUTH AMERICA -->
-        <path d="M152,322 L172,312 L195,310 L218,318 L235,332 L248,355 L255,382 L258,410 L252,438 L240,458 L222,470 L200,474 L178,465 L160,448 L148,425 L140,398 L138,370 L140,345 L145,330 Z" fill="#c8a870" stroke="#a88840" stroke-width="1.2"/>
-
-        <!-- EUROPE - more detailed -->
-        <path d="M398,42 L418,36 L440,34 L462,38 L480,44 L496,52 L506,65 L508,80 L502,96 L490,108 L475,115 L458,118 L440,115 L422,118 L408,112 L398,100 L392,85 L393,65 Z" fill="#d4b896" stroke="#b89870" stroke-width="1.2"/>
-        <!-- UK -->
-        <path d="M388,52 L400,46 L406,56 L404,70 L396,78 L386,72 L384,60 Z" fill="#d4b896" stroke="#b89870" stroke-width="1"/>
-        <!-- Ireland -->
-        <path d="M376,58 L384,54 L386,64 L380,70 L374,64 Z" fill="#d4b896" stroke="#b89870" stroke-width="0.8"/>
-        <!-- Scandinavia -->
-        <path d="M438,14 L458,10 L472,14 L482,26 L480,42 L468,46 L452,42 L440,32 Z" fill="#d4b896" stroke="#b89870" stroke-width="1"/>
-        <!-- Iceland -->
-        <path d="M340,28 L358,24 L366,32 L360,42 L344,44 L336,36 Z" fill="#d0d8e0" stroke="#a8b8c0" stroke-width="0.8"/>
-
-        <!-- AFRICA -->
-        <path d="M398,125 L428,118 L460,118 L492,125 L515,138 L528,158 L535,182 L538,210 L538,240 L534,268 L524,295 L508,318 L488,336 L465,345 L442,345 L420,336 L402,315 L390,290 L384,262 L382,234 L385,205 L390,175 L394,148 Z" fill="#c8a060" stroke="#a88040" stroke-width="1.2"/>
-        <!-- Madagascar -->
-        <path d="M548,268 L556,260 L562,272 L560,288 L552,294 L544,284 Z" fill="#c8a060" stroke="#a88040" stroke-width="0.8"/>
-
-        <!-- RUSSIA / NORTH ASIA -->
-        <path d="M508,22 L580,16 L650,14 L720,16 L778,22 L820,35 L840,52 L842,72 L830,90 L808,102 L778,110 L745,112 L710,115 L675,112 L645,118 L615,118 L585,112 L558,105 L535,95 L518,80 L506,62 Z" fill="#d4c090" stroke="#b8a070" stroke-width="1.2"/>
-
-        <!-- MIDDLE EAST -->
-        <path d="M520,112 L558,108 L580,115 L592,130 L590,148 L575,160 L555,165 L535,158 L522,145 L518,128 Z" fill="#e0c090" stroke="#c0a060" stroke-width="1"/>
-
-        <!-- INDIA -->
-        <path d="M592,118 L628,112 L648,120 L660,138 L658,162 L648,185 L632,205 L614,210 L600,200 L590,180 L586,158 L588,136 Z" fill="#c8b078" stroke="#a89050" stroke-width="1.2"/>
-
-        <!-- SOUTHEAST ASIA -->
-        <path d="M668,118 L705,112 L728,118 L742,132 L745,150 L738,168 L720,175 L700,172 L682,162 L670,148 L665,132 Z" fill="#c8a870" stroke="#a88850" stroke-width="1"/>
-        <!-- Malaysia/Singapore peninsula -->
-        <path d="M700,172 L712,178 L716,192 L710,200 L700,195 L695,182 Z" fill="#c8a870" stroke="#a88850" stroke-width="0.8"/>
-        <!-- Indonesia main islands -->
-        <path d="M692,198 L728,192 L758,196 L772,208 L768,222 L748,226 L718,220 L698,210 Z" fill="#c8a870" stroke="#a88850" stroke-width="1"/>
-        <path d="M745,218 L778,215 L792,226 L788,238 L768,240 L748,232 Z" fill="#c8a870" stroke="#a88850" stroke-width="0.8"/>
-
-        <!-- CHINA / EAST ASIA -->
-        <path d="M650,78 L705,72 L748,76 L775,88 L785,108 L778,128 L758,138 L730,142 L700,138 L672,128 L655,112 L645,95 Z" fill="#d4b878" stroke="#b89858" stroke-width="1.2"/>
-        <!-- Japan -->
-        <path d="M788,72 L800,66 L812,72 L818,86 L812,98 L800,100 L790,90 Z" fill="#d4b878" stroke="#b89858" stroke-width="0.8"/>
-        <!-- Korea -->
-        <path d="M762,88 L774,84 L780,94 L774,106 L762,106 L756,96 Z" fill="#d4b878" stroke="#b89858" stroke-width="0.8"/>
-
-        <!-- AUSTRALIA -->
-        <path d="M715,292 L760,280 L805,278 L840,285 L858,302 L862,325 L855,350 L835,368 L805,378 L772,378 L742,368 L720,348 L708,322 L708,302 Z" fill="#d4a870" stroke="#b88850" stroke-width="1.2"/>
-        <!-- New Zealand -->
-        <path d="M872,348 L882,340 L890,350 L888,364 L878,368 L870,360 Z" fill="#d4a870" stroke="#b88850" stroke-width="0.8"/>
-        <!-- Papua New Guinea -->
-        <path d="M778,245 L808,238 L825,248 L822,262 L806,268 L782,260 Z" fill="#c8a060" stroke="#a88040" stroke-width="0.8"/>
-
-        <!-- DECORATIVE border -->
-        <rect x="4" y="4" width="992" height="512" fill="none" stroke="#c9956a" stroke-width="2" rx="8"/>
-        <rect x="8" y="8" width="984" height="504" fill="none" stroke="#c9956a" stroke-width="0.5" rx="6"/>
-
-        <!-- ===== CUTE PINS ===== -->
-        <!-- Pin shape: round head + thin stem -->
-        <!-- Canada - coral pin -->
-        <g class="map-pin" data-name="Canada 🇨🇦" transform="translate(138,145)" filter="url(#pinshadow)">
-          <line x1="0" y1="0" x2="0" y2="14" stroke="#8B4513" stroke-width="1.5" stroke-linecap="round"/>
-          <circle cx="0" cy="-8" r="9" fill="url(#pinGrad1)" stroke="#c9574a" stroke-width="1"/>
-          <circle cx="-3" cy="-11" r="3" fill="rgba(255,255,255,0.4)"/>
-        </g>
-        <!-- Mexico - gold pin -->
-        <g class="map-pin" data-name="Mexico 🇲🇽" transform="translate(148,255)" filter="url(#pinshadow)">
-          <line x1="0" y1="0" x2="0" y2="14" stroke="#8B4513" stroke-width="1.5" stroke-linecap="round"/>
-          <circle cx="0" cy="-8" r="9" fill="url(#pinGrad2)" stroke="#a88030" stroke-width="1"/>
-          <circle cx="-3" cy="-11" r="3" fill="rgba(255,255,255,0.4)"/>
-        </g>
-        <!-- Peru - coral pin -->
-        <g class="map-pin" data-name="Peru 🇵🇪" transform="translate(188,385)" filter="url(#pinshadow)">
-          <line x1="0" y1="0" x2="0" y2="14" stroke="#8B4513" stroke-width="1.5" stroke-linecap="round"/>
-          <circle cx="0" cy="-8" r="9" fill="url(#pinGrad1)" stroke="#c9574a" stroke-width="1"/>
-          <circle cx="-3" cy="-11" r="3" fill="rgba(255,255,255,0.4)"/>
-        </g>
-        <!-- Portugal - gold pin -->
-        <g class="map-pin" data-name="Portugal 🇵🇹" transform="translate(396,82)" filter="url(#pinshadow)">
-          <line x1="0" y1="0" x2="0" y2="14" stroke="#8B4513" stroke-width="1.5" stroke-linecap="round"/>
-          <circle cx="0" cy="-8" r="9" fill="url(#pinGrad2)" stroke="#a88030" stroke-width="1"/>
-          <circle cx="-3" cy="-11" r="3" fill="rgba(255,255,255,0.4)"/>
-        </g>
-        <!-- Spain - coral pin -->
-        <g class="map-pin" data-name="Spain 🇪🇸" transform="translate(418,82)" filter="url(#pinshadow)">
-          <line x1="0" y1="0" x2="0" y2="14" stroke="#8B4513" stroke-width="1.5" stroke-linecap="round"/>
-          <circle cx="0" cy="-8" r="9" fill="url(#pinGrad1)" stroke="#c9574a" stroke-width="1"/>
-          <circle cx="-3" cy="-11" r="3" fill="rgba(255,255,255,0.4)"/>
-        </g>
-        <!-- Italy - gold pin -->
-        <g class="map-pin" data-name="Italy 🇮🇹" transform="translate(462,82)" filter="url(#pinshadow)">
-          <line x1="0" y1="0" x2="0" y2="14" stroke="#8B4513" stroke-width="1.5" stroke-linecap="round"/>
-          <circle cx="0" cy="-8" r="9" fill="url(#pinGrad2)" stroke="#a88030" stroke-width="1"/>
-          <circle cx="-3" cy="-11" r="3" fill="rgba(255,255,255,0.4)"/>
-        </g>
-        <!-- Malaysia - coral pin -->
-        <g class="map-pin" data-name="Malaysia 🇲🇾" transform="translate(702,175)" filter="url(#pinshadow)">
-          <line x1="0" y1="0" x2="0" y2="14" stroke="#8B4513" stroke-width="1.5" stroke-linecap="round"/>
-          <circle cx="0" cy="-8" r="9" fill="url(#pinGrad1)" stroke="#c9574a" stroke-width="1"/>
-          <circle cx="-3" cy="-11" r="3" fill="rgba(255,255,255,0.4)"/>
-        </g>
-        <!-- Singapore - gold pin -->
-        <g class="map-pin" data-name="Singapore 🇸🇬" transform="translate(714,195)" filter="url(#pinshadow)">
-          <line x1="0" y1="0" x2="0" y2="14" stroke="#8B4513" stroke-width="1.5" stroke-linecap="round"/>
-          <circle cx="0" cy="-8" r="9" fill="url(#pinGrad2)" stroke="#a88030" stroke-width="1"/>
-          <circle cx="-3" cy="-11" r="3" fill="rgba(255,255,255,0.4)"/>
-        </g>
-        <!-- Indonesia - coral pin -->
-        <g class="map-pin" data-name="Indonesia 🇮🇩" transform="translate(738,212)" filter="url(#pinshadow)">
-          <line x1="0" y1="0" x2="0" y2="14" stroke="#8B4513" stroke-width="1.5" stroke-linecap="round"/>
-          <circle cx="0" cy="-8" r="9" fill="url(#pinGrad1)" stroke="#c9574a" stroke-width="1"/>
-          <circle cx="-3" cy="-11" r="3" fill="rgba(255,255,255,0.4)"/>
-        </g>
-
-        <!-- Legend -->
-        <rect x="12" y="460" width="190" height="48" rx="4" fill="rgba(245,237,224,0.92)" stroke="#c9956a" stroke-width="1"/>
-        <g transform="translate(22,474)" filter="url(#pinshadow)">
-          <line x1="0" y1="0" x2="0" y2="8" stroke="#8B4513" stroke-width="1.2"/>
-          <circle cx="0" cy="-5" r="6" fill="url(#pinGrad1)" stroke="#c9574a" stroke-width="0.8"/>
-        </g>
-        <text x="34" y="474" font-family="Georgia,serif" font-size="10" fill="#8B4513">Coral = Americas</text>
-        <g transform="translate(22,492)" filter="url(#pinshadow)">
-          <line x1="0" y1="0" x2="0" y2="8" stroke="#8B4513" stroke-width="1.2"/>
-          <circle cx="0" cy="-5" r="6" fill="url(#pinGrad2)" stroke="#a88030" stroke-width="0.8"/>
-        </g>
-        <text x="34" y="492" font-family="Georgia,serif" font-size="10" fill="#8B4513">Gold = Europe &amp; Asia</text>
-
-        <!-- Title stamp -->
-        <rect x="820" y="455" width="168" height="52" rx="4" fill="rgba(245,237,224,0.92)" stroke="#c9956a" stroke-width="1"/>
-        <text x="904" y="472" text-anchor="middle" font-family="Georgia,serif" font-size="9" fill="#c9956a" font-style="italic">Allee's Adventures</text>
-        <text x="904" y="486" text-anchor="middle" font-family="Georgia,serif" font-size="13" font-weight="bold" fill="#8B4513">9 Countries</text>
-        <text x="904" y="498" text-anchor="middle" font-family="Georgia,serif" font-size="9" fill="#c9956a" font-style="italic">& counting ✦</text>
-      </svg>
+  <div class="gallery-section">
+    <div class="script" style="text-align:center;font-family:'Dancing Script',cursive;font-size:1.8rem;color:var(--deep-coral);margin-bottom:8px;">explore by destination</div>
+    <div class="gallery-grid" id="galleryGrid">
+      <div class="dest-card" onclick="openGallery('portugal')">
+        <div class="dest-cover" style="background:linear-gradient(135deg,#f4a59a,#e8796a);">
+          <img src="portugal-1.jpg" alt="Portugal" onerror="this.style.display='none'"/>
+          <div class="dest-overlay"><span class="dest-flag">🇵🇹</span></div>
+        </div>
+        <div class="dest-info"><h3>Portugal</h3><p>Lisbon · Porto · Algarve</p></div>
+      </div>
+      <div class="dest-card" onclick="openGallery('spain')">
+        <div class="dest-cover" style="background:linear-gradient(135deg,#e8c14a,#c9a227);">
+          <img src="spain-1.jpg" alt="Spain" onerror="this.style.display='none'"/>
+          <div class="dest-overlay"><span class="dest-flag">🇪🇸</span></div>
+        </div>
+        <div class="dest-info"><h3>Spain</h3><p>Barcelona · Valencia · Seville</p></div>
+      </div>
+      <div class="dest-card" onclick="openGallery('italy')">
+        <div class="dest-cover" style="background:linear-gradient(135deg,#f9c5be,#f4a59a);">
+          <img src="italy-1.jpg" alt="Italy" onerror="this.style.display='none'"/>
+          <div class="dest-overlay"><span class="dest-flag">🇮🇹</span></div>
+        </div>
+        <div class="dest-info"><h3>Italy</h3><p>Florence</p></div>
+      </div>
+      <div class="dest-card" onclick="openGallery('peru')">
+        <div class="dest-cover" style="background:linear-gradient(135deg,#c8a870,#a88840);">
+          <img src="peru-1.jpg" alt="Peru" onerror="this.style.display='none'"/>
+          <div class="dest-overlay"><span class="dest-flag">🇵🇪</span></div>
+        </div>
+        <div class="dest-info"><h3>Peru</h3><p>Machu Picchu & beyond</p></div>
+      </div>
+      <div class="dest-card" onclick="openGallery('singapore')">
+        <div class="dest-cover" style="background:linear-gradient(135deg,#e8796a,#c9574a);">
+          <img src="singapore-1.jpg" alt="Singapore" onerror="this.style.display='none'"/>
+          <div class="dest-overlay"><span class="dest-flag">🇸🇬</span></div>
+        </div>
+        <div class="dest-info"><h3>Singapore</h3><p>Southeast Asia's gem</p></div>
+      </div>
+      <div class="dest-card" onclick="openGallery('malaysia')">
+        <div class="dest-cover" style="background:linear-gradient(135deg,#f4a59a,#c9956a);">
+          <img src="malaysia-1.jpg" alt="Malaysia" onerror="this.style.display='none'"/>
+          <div class="dest-overlay"><span class="dest-flag">🇲🇾</span></div>
+        </div>
+        <div class="dest-info"><h3>Malaysia</h3><p>Culture & jungle</p></div>
+      </div>
+      <div class="dest-card" onclick="openGallery('indonesia')">
+        <div class="dest-cover" style="background:linear-gradient(135deg,#e8c14a,#e8796a);">
+          <img src="indonesia-1.jpg" alt="Indonesia" onerror="this.style.display='none'"/>
+          <div class="dest-overlay"><span class="dest-flag">🇮🇩</span></div>
+        </div>
+        <div class="dest-info"><h3>Indonesia</h3><p>Islands & temples</p></div>
+      </div>
+      <div class="dest-card" onclick="openGallery('mexico')">
+        <div class="dest-cover" style="background:linear-gradient(135deg,#f9d5cf,#e8796a);">
+          <img src="mexico-1.jpg" alt="Mexico" onerror="this.style.display='none'"/>
+          <div class="dest-overlay"><span class="dest-flag">🇲🇽</span></div>
+        </div>
+        <div class="dest-info"><h3>Mexico</h3><p>Color & tacos</p></div>
+      </div>
+      <div class="dest-card" onclick="openGallery('canada')">
+        <div class="dest-cover" style="background:linear-gradient(135deg,#c8dce8,#a0b8c4);">
+          <img src="canada-1.jpg" alt="Canada" onerror="this.style.display='none'"/>
+          <div class="dest-overlay"><span class="dest-flag">🇨🇦</span></div>
+        </div>
+        <div class="dest-info"><h3>Canada</h3><p>Mountains & maple</p></div>
+      </div>
     </div>
   </div>
 
-  <div class="countries-list">
-    <div class="country-card"><div class="flag">🇸🇬</div><h3>Singapore</h3><p>Southeast Asia's dazzling gem</p></div>
-    <div class="country-card"><div class="flag">🇲🇾</div><h3>Malaysia</h3><p>Culture, jungle & incredible cuisine</p></div>
-    <div class="country-card"><div class="flag">🇮🇩</div><h3>Indonesia</h3><p>Islands, temples & adventure</p></div>
-    <div class="country-card"><div class="flag">🇪🇸</div><h3>Spain</h3><p>Tapas, flamenco & late nights</p></div>
-    <div class="country-card"><div class="flag">🇵🇹</div><h3>Portugal</h3><p>Cobblestones, pasteis & soul</p></div>
-    <div class="country-card"><div class="flag">🇮🇹</div><h3>Italy</h3><p>Pasta, piazzas & pure magic</p></div>
-    <div class="country-card"><div class="flag">🇨🇦</div><h3>Canada</h3><p>Mountains, maple & kindness</p></div>
-    <div class="country-card"><div class="flag">🇲🇽</div><h3>Mexico</h3><p>Color, tacos & warm hearts</p></div>
-    <div class="country-card"><div class="flag">🇵🇪</div><h3>Peru</h3><p>Andes, ancient ruins & wonder</p></div>
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <div class="lightbox-inner" onclick="event.stopPropagation()">
+      <button class="lb-close" onclick="closeLightbox()">✕</button>
+      <div class="lb-header">
+        <span class="lb-flag" id="lbFlag"></span>
+        <div><h3 id="lbTitle"></h3><p id="lbSub"></p></div>
+      </div>
+      <div class="lb-story" id="lbStory"></div>
+      <div class="lb-photos" id="lbPhotos"></div>
+    </div>
   </div>
+
+
 
   <div class="parks-section">
     <h3>closer to home</h3>
@@ -731,23 +647,33 @@ function closeMenu(){
   document.getElementById('mobileMenu').classList.remove('open');
 }
 
-// Map pin tooltips
-const pins = document.querySelectorAll('.map-pin');
-const tooltip = document.getElementById('tooltip');
-const mapWrap = document.getElementById('mapWrap');
-pins.forEach(pin=>{
-  pin.addEventListener('mouseenter',e=>{
-    const rect = mapWrap.getBoundingClientRect();
-    const pinRect = pin.getBoundingClientRect();
-    tooltip.textContent = pin.dataset.name;
-    tooltip.style.display = 'block';
-    tooltip.style.left = (pinRect.left - rect.left - 20)+'px';
-    tooltip.style.top = (pinRect.top - rect.top - 36)+'px';
-  });
-  pin.addEventListener('mouseleave',()=>{
-    tooltip.style.display='none';
-  });
-});
+const destinations = {
+  portugal:{flag:'🇵🇹',title:'Portugal',sub:'Lisbon · Porto · Algarve · July–August 2024',story:'A whole month soaking up Portugal — from the colorful tiles and pastel de natas of Lisbon, to the stunning cliffs of the Algarve, to the charming wine bars of Porto. Working remotely from cafés while watching the sun set over the Tagus River? Absolutely unbeatable.',photos:['portugal-1.jpg','portugal-2.jpg','portugal-3.jpg','portugal-4.jpg']},
+  spain:{flag:'🇪🇸',title:'Spain',sub:'Barcelona · Valencia · Seville · August–September 2024',story:'Two weeks of tapas, late nights, and pure magic. Gaudi\'s architecture in Barcelona, paella in Valencia, and flamenco in Seville. Spain has a way of making you feel alive in every single moment.',photos:['spain-1.jpg','spain-2.jpg','spain-3.jpg','spain-4.jpg']},
+  italy:{flag:'🇮🇹',title:'Italy',sub:'Florence · September 2024',story:'Two weeks living like a Florentine — wandering the Uffizi, eating the most incredible pasta, and crossing the Ponte Vecchio at golden hour. Florence stole a little piece of my heart.',photos:['italy-1.jpg','italy-2.jpg','italy-3.jpg','italy-4.jpg']},
+  peru:{flag:'🇵🇪',title:'Peru',sub:'Machu Picchu & beyond',story:'Standing at Machu Picchu is one of those life moments you can\'t fully prepare for. The Andes, the ancient ruins, the incredible people — Peru is breathtaking in every way.',photos:['peru-1.jpg','peru-2.jpg','peru-3.jpg','peru-4.jpg']},
+  singapore:{flag:'🇸🇬',title:'Singapore',sub:'Southeast Asia\'s dazzling gem',story:'A city that somehow fits every culture, cuisine and architectural wonder into one tiny island. Singapore was my first taste of Southeast Asia and it completely hooked me.',photos:['singapore-1.jpg','singapore-2.jpg','singapore-3.jpg','singapore-4.jpg']},
+  malaysia:{flag:'🇲🇾',title:'Malaysia',sub:'Culture, jungle & incredible cuisine',story:'From the street food in Penang to the rainforests of Borneo, Malaysia is endlessly diverse and delicious. One of the most underrated destinations I\'ve ever visited.',photos:['malaysia-1.jpg','malaysia-2.jpg','malaysia-3.jpg','malaysia-4.jpg']},
+  indonesia:{flag:'🇮🇩',title:'Indonesia',sub:'Islands, temples & adventure',story:'Bali\'s temples, the rice terraces, the warm people — Indonesia is pure magic. Every island has its own personality and energy.',photos:['indonesia-1.jpg','indonesia-2.jpg','indonesia-3.jpg','indonesia-4.jpg']},
+  mexico:{flag:'🇲🇽',title:'Mexico',sub:'Color, tacos & warm hearts',story:'Mexico\'s colors, flavors and people are like nowhere else on earth. From the beaches to the cenotes to the most incredible food — I will always find a reason to go back.',photos:['mexico-1.jpg','mexico-2.jpg','mexico-3.jpg','mexico-4.jpg']},
+  canada:{flag:'🇨🇦',title:'Canada',sub:'Mountains & maple',story:'The Canadian Rockies are some of the most dramatic landscapes I\'ve ever seen. Banff and Jasper belong on every nature lover\'s bucket list.',photos:['canada-1.jpg','canada-2.jpg','canada-3.jpg','canada-4.jpg']}
+};
+
+function openGallery(key){
+  const d = destinations[key];
+  document.getElementById('lbFlag').textContent = d.flag;
+  document.getElementById('lbTitle').textContent = d.title;
+  document.getElementById('lbSub').textContent = d.sub;
+  document.getElementById('lbStory').textContent = d.story;
+  const grid = document.getElementById('lbPhotos');
+  grid.innerHTML = d.photos.map((p,i)=>`<div class="lb-photo"><img src="${p}" alt="${d.title} ${i+1}" onerror="this.parentElement.innerHTML='📸 Photo coming soon!'"/></div>`).join('');
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow='';
+}
 </script>
 </body>
 </html>
