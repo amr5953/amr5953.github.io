@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Allee Ramirez</title>
+<style>
+  :root {
+    --blush: #f2ddd8;
+    --rose: #c8878a;
+    --deep-rose: #a85f62;
+    --dark: #2c1f1f;
+    --white: #ffffff;
+    --soft: #f9eeec;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: 'Georgia', serif; background: var(--blush); color: var(--dark); }
+
+  /* NAV */
+  nav {
+    background: var(--white);
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(200,135,138,0.15);
+  }
+  .logo { font-size: 1.5rem; color: var(--rose); letter-spacing: 1px; font-style: italic; }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--dark);
+    font-family: 'Arial', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--rose); }
+
+  /* PAGES */
+  .page { display: none; min-height: 100vh; }
+  .page.active { display: block; }
+
+  /* HOME */
+  .hero {
+    background: linear-gradient(135deg, #e8c5c0 0%, #f2ddd8 50%, #dba8a8 100%);
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 20px;
+  }
+  .hero-content h1 { font-size: 3.5rem; color: var(--dark); margin-bottom: 16px; }
+  .hero-content h1 span { color: var(--rose); }
+  .hero-content p { font-size: 1.2rem; color: #6b4c4c; max-width: 600px; margin: 0 auto 32px; line-height: 1.8; font-style: italic; }
+  .btn {
+    background: var(--rose);
+    color: var(--white);
+    border: none;
+    padding: 14px 36px;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: background 0.3s, transform 0.2s;
+    font-family: 'Arial', sans-serif;
+  }
+  .btn:hover { background: var(--deep-rose); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent;
+    border: 2px solid var(--rose);
+    color: var(--rose);
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+    font-family: 'Arial', sans-serif;
+    margin-left: 12px;
+  }
+  .btn-outline:hover { background: var(--rose); color: var(--white); }
+
+  .home-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    padding: 60px 60px;
+    background: var(--soft);
+  }
+  .home-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 36px 28px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(200,135,138,0.12);
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .home-card:hover { transform: translateY(-6px); box-shadow: 0 8px 30px rgba(200,135,138,0.25); }
+  .home-card .icon { font-size: 2.5rem; margin-bottom: 16px; }
+  .home-card h3 { color: var(--rose); font-size: 1.2rem; margin-bottom: 10px; }
+  .home-card p { color: #7a5a5a; font-size: 0.9rem; line-height: 1.6; font-family: 'Arial', sans-serif; }
+
+  /* SECTION STYLES */
+  .section-header {
+    text-align: center;
+    padding: 60px 20px 30px;
+  }
+  .section-header h2 { font-size: 2.5rem; color: var(--dark); margin-bottom: 12px; }
+  .section-header p { color: #7a5a5a; font-size: 1rem; font-family: 'Arial', sans-serif; font-style: italic; }
+  .divider { width: 60px; height: 3px; background: var(--rose); margin: 16px auto; border-radius: 2px; }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 40px 80px 80px;
+    align-items: start;
+  }
+  .about-text h3 { color: var(--rose); font-size: 1.4rem; margin-bottom: 16px; }
+  .about-text p { color: #5a3c3c; line-height: 1.9; font-family: 'Arial', sans-serif; font-size: 0.95rem; margin-bottom: 20px; }
+  .fun-facts { background: var(--white); border-radius: 16px; padding: 32px; box-shadow: 0 4px 20px rgba(200,135,138,0.1); }
+  .fun-facts h3 { color: var(--rose); font-size: 1.2rem; margin-bottom: 20px; }
+  .fact-item { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; font-family: 'Arial', sans-serif; font-size: 0.9rem; color: var(--dark); }
+  .fact-item span:first-child { font-size: 1.3rem; }
+
+  /* HOBBIES */
+  .hobbies-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    padding: 20px 60px 80px;
+  }
+  .hobby-card {
+    background: var(--white);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(200,135,138,0.12);
+    transition: transform 0.3s;
+  }
+  .hobby-card:hover { transform: translateY(-4px); }
+  .hobby-banner {
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+  }
+  .hiking-banner { background: linear-gradient(135deg, #d4a5a0, #c8878a); }
+  .food-banner { background: linear-gradient(135deg, #e8b4b0, #d4878a); }
+  .travel-banner { background: linear-gradient(135deg, #c4878a, #b06870); }
+  .dog-banner { background: linear-gradient(135deg, #dbb0a8, #c89590); }
+  .nature-banner { background: linear-gradient(135deg, #c8a0a0, #b88080); }
+  .solo-banner { background: linear-gradient(135deg, #d4b0b0, #c09090); }
+  .hobby-info { padding: 24px; }
+  .hobby-info h3 { color: var(--rose); margin-bottom: 10px; font-size: 1.1rem; }
+  .hobby-info p { color: #7a5a5a; font-size: 0.88rem; line-height: 1.6; font-family: 'Arial', sans-serif; }
+
+  /* TRAVEL */
+  .travel-intro { padding: 0 80px 40px; text-align: center; }
+  .travel-intro p { color: #7a5a5a; font-family: 'Arial', sans-serif; font-size: 1rem; line-height: 1.8; max-width: 700px; margin: 0 auto; }
+  .countries-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 0 60px 40px;
+  }
+  .country-card {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 28px 20px;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(200,135,138,0.1);
+    transition: transform 0.3s;
+  }
+  .country-card:hover { transform: translateY(-4px); }
+  .country-card .flag { font-size: 2.8rem; margin-bottom: 10px; }
+  .country-card h3 { color: var(--dark); font-size: 1rem; margin-bottom: 6px; }
+  .country-card p { color: #a07070; font-size: 0.8rem; font-family: 'Arial', sans-serif; font-style: italic; }
+  .us-section { padding: 0 60px 60px; }
+  .us-section h3 { color: var(--rose); font-size: 1.3rem; margin-bottom: 20px; text-align: center; }
+  .parks-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+  }
+  .park-tag {
+    background: var(--white);
+    border: 2px solid var(--rose);
+    color: var(--rose);
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-family: 'Arial', sans-serif;
+  }
+
+  /* PROFESSIONAL */
+  .pro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 20px 80px 80px;
+  }
+  .pro-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 4px 20px rgba(200,135,138,0.1);
+  }
+  .pro-card h3 { color: var(--rose); font-size: 1.2rem; margin-bottom: 20px; border-bottom: 2px solid var(--blush); padding-bottom: 12px; }
+  .skill-tag {
+    display: inline-block;
+    background: var(--blush);
+    color: var(--deep-rose);
+    padding: 6px 14px;
+    border-radius: 14px;
+    font-size: 0.82rem;
+    margin: 5px 4px;
+    font-family: 'Arial', sans-serif;
+  }
+  .job-item { margin-bottom: 22px; }
+  .job-item h4 { color: var(--dark); font-size: 0.95rem; margin-bottom: 4px; }
+  .job-item .company { color: var(--rose); font-size: 0.85rem; font-family: 'Arial', sans-serif; margin-bottom: 4px; }
+  .job-item .years { color: #a07070; font-size: 0.8rem; font-family: 'Arial', sans-serif; font-style: italic; }
+
+  /* RESUME */
+  .resume-section { padding: 20px 80px 80px; }
+  .resume-download {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(200,135,138,0.1);
+    margin-bottom: 40px;
+  }
+  .resume-download p { color: #7a5a5a; font-family: 'Arial', sans-serif; margin-bottom: 24px; font-size: 0.95rem; }
+  .resume-visual { display: grid; grid-template-columns: 1fr 2fr; gap: 30px; }
+  .resume-left { background: var(--rose); border-radius: 16px; padding: 32px; color: var(--white); }
+  .resume-left h3 { font-size: 1.1rem; margin-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 10px; }
+  .resume-left p { font-size: 0.85rem; line-height: 1.7; font-family: 'Arial', sans-serif; margin-bottom: 8px; opacity: 0.9; }
+  .resume-right { background: var(--white); border-radius: 16px; padding: 32px; box-shadow: 0 4px 16px rgba(200,135,138,0.1); }
+  .resume-right h3 { color: var(--rose); font-size: 1.1rem; margin-bottom: 16px; }
+  .resume-item { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--blush); }
+  .resume-item:last-child { border-bottom: none; }
+  .resume-item h4 { color: var(--dark); font-size: 0.95rem; }
+  .resume-item span { color: var(--rose); font-size: 0.82rem; font-family: 'Arial', sans-serif; }
+  .resume-item p { color: #7a5a5a; font-size: 0.85rem; font-family: 'Arial', sans-serif; margin-top: 6px; line-height: 1.6; }
+
+  /* CONTACT */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 20px 80px 80px;
+  }
+  .contact-info { padding: 20px 0; }
+  .contact-info h3 { color: var(--rose); font-size: 1.3rem; margin-bottom: 20px; }
+  .contact-info p { color: #7a5a5a; font-family: 'Arial', sans-serif; line-height: 1.8; margin-bottom: 30px; }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+    text-decoration: none;
+    color: var(--dark);
+    font-family: 'Arial', sans-serif;
+    font-size: 0.95rem;
+    transition: color 0.3s;
+  }
+  .contact-link:hover { color: var(--rose); }
+  .contact-link .icon-circle {
+    width: 44px; height: 44px;
+    background: var(--blush);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+  }
+  .contact-form { background: var(--white); border-radius: 16px; padding: 36px; box-shadow: 0 4px 20px rgba(200,135,138,0.1); }
+  .contact-form h3 { color: var(--rose); font-size: 1.2rem; margin-bottom: 24px; }
+  .form-group { margin-bottom: 18px; }
+  .form-group label { display: block; color: var(--dark); font-family: 'Arial', sans-serif; font-size: 0.85rem; margin-bottom: 6px; }
+  .form-group input, .form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid var(--blush);
+    border-radius: 10px;
+    font-family: 'Arial', sans-serif;
+    font-size: 0.9rem;
+    color: var(--dark);
+    background: var(--soft);
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  .form-group input:focus, .form-group textarea:focus { border-color: var(--rose); }
+  .form-group textarea { height: 120px; resize: vertical; }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+    padding: 30px;
+    font-family: 'Arial', sans-serif;
+    font-size: 0.85rem;
+  }
+  footer span { color: var(--rose); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Allee Ramirez</div>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showPage('home')">Home</a></li>
+    <li><a href="#" onclick="showPage('about')">About</a></li>
+    <li><a href="#" onclick="showPage('hobbies')">Hobbies</a></li>
+    <li><a href="#" onclick="showPage('travel')">Travel</a></li>
+    <li><a href="#" onclick="showPage('professional')">Professional</a></li>
+    <li><a href="#" onclick="showPage('resume')">Resume</a></li>
+    <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HOME -->
+<div id="home" class="page active">
+  <div class="hero">
+    <div class="hero-content">
+      <h1>Hi, I'm <span>Allee</span> 👋</h1>
+      <p>"Explorer of new places, flavors, and perspectives — navigating life one trail, one city, and one conversation at a time."</p>
+      <button class="btn" onclick="showPage('about')">Get to Know Me</button>
+      <button class="btn-outline" onclick="showPage('contact')">Say Hello</button>
+    </div>
+  </div>
+  <div class="home-cards">
+    <div class="home-card" onclick="showPage('professional')">
+      <div class="icon">💼</div>
+      <h3>Professional Life</h3>
+      <p>Technical GTM Consultant helping businesses grow through strategy and technology.</p>
+    </div>
+    <div class="home-card" onclick="showPage('travel')">
+      <div class="icon">✈️</div>
+      <h3>World Traveler</h3>
+      <p>From the streets of Singapore to the mountains of Peru — always chasing the next adventure.</p>
+    </div>
+    <div class="home-card" onclick="showPage('hobbies')">
+      <div class="icon">🌿</div>
+      <h3>Life & Hobbies</h3>
+      <p>Hiking trails, discovering local food gems, and adventuring with my dog by my side.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div id="about" class="page">
+  <div class="section-header">
+    <h2>About Me</h2>
+    <div class="divider"></div>
+    <p>A little bit about the person behind the adventures</p>
+  </div>
+  <div class="about-grid">
+    <div class="about-text">
+      <h3>Hello, I'm Allee 🌸</h3>
+      <p>I'm a Technical GTM Consultant with a passion for solving complex problems and helping businesses scale. But beyond the work, I'm a curious soul who believes the best way to grow is to get a little uncomfortable.</p>
+      <p>In 2023, I packed my laptop and spent 2 months solo traveling across Europe — working remotely while staying in Airbnbs and hostels, meeting strangers who became lifelong friends, and learning more about myself than any book could teach.</p>
+      <p>When I'm not working or traveling, you'll find me on a hiking trail, hunting down the best local restaurant in whatever city I'm in, or spending quality time with my dog. Life is short — I plan to see all of it.</p>
+    </div>
+    <div class="fun-facts">
+      <h3>✨ Fun Facts</h3>
+      <div class="fact-item"><span>🌍</span><span>Visited 9+ countries across 4 continents</span></div>
+      <div class="fact-item"><span>💻</span><span>Remote-worked across Europe for 2 months solo</span></div>
+      <div class="fact-item"><span>🐕</span><span>Dog mom — she's my #1 travel companion</span></div>
+      <div class="fact-item"><span>🥾</span><span>National park hiking enthusiast</span></div>
+      <div class="fact-item"><span>🍜</span><span>Self-proclaimed foodie — always finding the best local eats</span></div>
+      <div class="fact-item"><span>🤝</span><span>Made lifelong friends from hostels around the world</span></div>
+      <div class="fact-item"><span>📍</span><span>Based in the US, heart in many places</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- HOBBIES -->
+<div id="hobbies" class="page">
+  <div class="section-header">
+    <h2>Hobbies & Passions</h2>
+    <div class="divider"></div>
+    <p>The things that fill my cup outside of work</p>
+  </div>
+  <div class="hobbies-grid">
+    <div class="hobby-card">
+      <div class="hobby-banner hiking-banner">🥾</div>
+      <div class="hobby-info">
+        <h3>Hiking & Nature</h3>
+        <p>From national park trails to mountain summits, hiking is my moving meditation. There's nothing like earning a view with your own two feet.</p>
+      </div>
+    </div>
+    <div class="hobby-card">
+      <div class="hobby-banner food-banner">🍽️</div>
+      <div class="hobby-info">
+        <h3>Food & Culinary Exploration</h3>
+        <p>I travel with my stomach. Trying local cuisine is my favorite way to understand a new culture — from street food in Southeast Asia to tapas in Spain.</p>
+      </div>
+    </div>
+    <div class="hobby-card">
+      <div class="hobby-banner travel-banner">✈️</div>
+      <div class="hobby-info">
+        <h3>International Travel</h3>
+        <p>9 countries and counting. I love immersing myself in new cultures, languages, and ways of life. Every trip changes me a little bit.</p>
+      </div>
+    </div>
+    <div class="hobby-card">
+      <div class="hobby-banner dog-banner">🐾</div>
+      <div class="hobby-info">
+        <h3>Dog Mom Life</h3>
+        <p>My dog is my adventure partner. Whether it's a road trip to a national park or a lazy Sunday walk, she makes everything better.</p>
+      </div>
+    </div>
+    <div class="hobby-card">
+      <div class="hobby-banner nature-banner">🏞️</div>
+      <div class="hobby-info">
+        <h3>US National Parks</h3>
+        <p>Working my way through the US national parks bucket list. There's an incredible amount of beauty right in our own backyard.</p>
+      </div>
+    </div>
+    <div class="hobby-card">
+      <div class="hobby-banner solo-banner">🎒</div>
+      <div class="hobby-info">
+        <h3>Solo Travel & Growth</h3>
+        <p>Two months in Europe solo taught me resilience, independence, and the art of making friends with strangers. It's the best personal development course I've ever taken.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TRAVEL -->
+<div id="travel" class="page">
+  <div class="section-header">
+    <h2>My Travel Map</h2>
+    <div class="divider"></div>
+    <p>Places I've been lucky enough to explore</p>
+  </div>
+  <div class="travel-intro">
+    <p>From backpacking solo through Europe to exploring the jungles of Southeast Asia, travel has shaped who I am. Each destination has left a little piece of itself with me — and I've left a little of myself behind too.</p>
+  </div>
+  <div class="countries-grid">
+    <div class="country-card"><div class="flag">🇸🇬</div><h3>Singapore</h3><p>Southeast Asia's gem</p></div>
+    <div class="country-card"><div class="flag">🇲🇾</div><h3>Malaysia</h3><p>Culture & cuisine</p></div>
+    <div class="country-card"><div class="flag">🇮🇩</div><h3>Indonesia</h3><p>Islands & adventure</p></div>
+    <div class="country-card"><div class="flag">🇪🇸</div><h3>Spain</h3><p>Tapas & flamenco</p></div>
+    <div class="country-card"><div class="flag">🇵🇹</div><h3>Portugal</h3><p>Cobblestones & pasteis</p></div>
+    <div class="country-card"><div class="flag">🇮🇹</div><h3>Italy</h3><p>Pasta & piazzas</p></div>
+    <div class="country-card"><div class="flag">🇨🇦</div><h3>Canada</h3><p>Mountains & maple</p></div>
+    <div class="country-card"><div class="flag">🇲🇽</div><h3>Mexico</h3><p>Tacos & color</p></div>
+    <div class="country-card"><div class="flag">🇵🇪</div><h3>Peru</h3><p>Andes & ancient ruins</p></div>
+  </div>
+  <div class="us-section">
+    <h3>🏞️ US National Parks & Adventures</h3>
+    <div class="parks-list">
+      <span class="park-tag">🌲 Yosemite</span>
+      <span class="park-tag">🏜️ Grand Canyon</span>
+      <span class="park-tag">🌊 Acadia</span>
+      <span class="park-tag">⛰️ Rocky Mountain</span>
+      <span class="park-tag">🌋 Zion</span>
+      <span class="park-tag">🦬 Yellowstone</span>
+      <span class="park-tag">🌿 Great Smoky Mountains</span>
+      <span class="park-tag">✨ + More to come</span>
+    </div>
+  </div>
+</div>
+
+<!-- PROFESSIONAL -->
+<div id="professional" class="page">
+  <div class="section-header">
+    <h2>Professional Life</h2>
+    <div class="divider"></div>
+    <p>Where strategy meets technology</p>
+  </div>
+  <div class="pro-grid">
+    <div class="pro-card">
+      <h3>💼 What I Do</h3>
+      <div class="job-item">
+        <h4>Technical GTM Consultant</h4>
+        <div class="company">Go-to-Market Strategy & Tech</div>
+        <div class="years">Current Role</div>
+        <p style="color:#7a5a5a;font-family:'Arial',sans-serif;font-size:0.88rem;margin-top:8px;line-height:1.6;">I help companies bridge the gap between technical products and market adoption — building strategies that drive revenue and growth.</p>
+      </div>
+    </div>
+    <div class="pro-card">
+      <h3>🛠️ Skills & Expertise</h3>
+      <span class="skill-tag">Go-to-Market Strategy</span>
+      <span class="skill-tag">Technical Consulting</span>
+      <span class="skill-tag">Sales Enablement</span>
+      <span class="skill-tag">CRM & RevOps</span>
+      <span class="skill-tag">Product Positioning</span>
+      <span class="skill-tag">Client Strategy</span>
+      <span class="skill-tag">Data Analysis</span>
+      <span class="skill-tag">Cross-functional Leadership</span>
+      <span class="skill-tag">Remote Work</span>
+    </div>
+    <div class="pro-card">
+      <h3>🌟 What Drives Me</h3>
+      <p style="color:#7a5a5a;font-family:'Arial',sans-serif;font-size:0.9rem;line-height:1.8;">I believe the best work happens at the intersection of people, process, and technology. I'm passionate about helping teams work smarter and businesses grow with intention.</p>
+    </div>
+    <div class="pro-card">
+      <h3>📬 Work With Me</h3>
+      <p style="color:#7a5a5a;font-family:'Arial',sans-serif;font-size:0.9rem;line-height:1.8;margin-bottom:20px;">Interested in collaborating or have a project in mind? I'd love to connect.</p>
+      <button class="btn" onclick="showPage('contact')">Get in Touch</button>
+    </div>
+  </div>
+</div>
+
+<!-- RESUME -->
+<div id="resume" class="page">
+  <div class="section-header">
+    <h2>Resume</h2>
+    <div class="divider"></div>
+    <p>My professional journey at a glance</p>
+  </div>
+  <div class="resume-section">
+    <div class="resume-download">
+      <p>Want the full picture? Download my resume for a complete overview of my experience, skills, and education.</p>
+      <button class="btn">⬇️ Download Resume (PDF)</button>
+    </div>
+    <div class="resume-visual">
+      <div class="resume-left">
+        <h3>Contact</h3>
+        <p>📧 alleeramirez.97@gmail.com</p>
+        <p>💼 LinkedIn: alleeramirez</p>
+        <br/>
+        <h3>Education</h3>
+        <p>Add your degree & university here</p>
+        <br/>
+        <h3>Languages</h3>
+        <p>English (Native)</p>
+        <p>+ Add others</p>
+        <br/>
+        <h3>Interests</h3>
+        <p>✈️ Travel</p>
+        <p>🥾 Hiking</p>
+        <p>🍽️ Food</p>
+        <p>🐾 Dogs</p>
+      </div>
+      <div class="resume-right">
+        <h3>Experience</h3>
+        <div class="resume-item">
+          <h4>Technical GTM Consultant</h4>
+          <span>Current Position · Add Company Name</span>
+          <p>Add a brief description of your role, key responsibilities and achievements here.</p>
+        </div>
+        <div class="resume-item">
+          <h4>Previous Role Title</h4>
+          <span>Company Name · Years</span>
+          <p>Add description of previous role here.</p>
+        </div>
+        <div class="resume-item">
+          <h4>Previous Role Title</h4>
+          <span>Company Name · Years</span>
+          <p>Add description of previous role here.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div id="contact" class="page">
+  <div class="section-header">
+    <h2>Let's Connect</h2>
+    <div class="divider"></div>
+    <p>Whether it's work, travel tips, or just saying hi — I'd love to hear from you</p>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h3>Get In Touch</h3>
+      <p>I'm always open to new connections, collaborations, or just a good conversation about travel, food, or life. Don't be a stranger!</p>
+      <a class="contact-link" href="mailto:alleeramirez.97@gmail.com">
+        <div class="icon-circle">📧</div>
+        alleeramirez.97@gmail.com
+      </a>
+      <a class="contact-link" href="https://www.linkedin.com/in/alleeramirez/" target="_blank">
+        <div class="icon-circle">💼</div>
+        linkedin.com/in/alleeramirez
+      </a>
+      <a class="contact-link" href="#">
+        <div class="icon-circle">📸</div>
+        Instagram (coming soon)
+      </a>
+    </div>
+    <div class="contact-form">
+      <h3>Send a Message</h3>
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" placeholder="Jane Doe"/>
+      </div>
+      <div class="form-group">
+        <label>Your Email</label>
+        <input type="email" placeholder="jane@example.com"/>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea placeholder="Say hello..."></textarea>
+      </div>
+      <button class="btn" style="width:100%">Send Message ✉️</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>Made with <span>♥</span> by Allee Ramirez · 2025</p>
+</footer>
+
+<script>
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo(0,0);
+  }
+</script>
+</body>
+</html>
