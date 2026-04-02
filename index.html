@@ -53,7 +53,23 @@ nav{background:var(--white);padding:14px 24px;display:flex;justify-content:space
 .polaroid{background:var(--white);padding:16px 16px 48px;box-shadow:-8px 8px 30px rgba(0,0,0,.12),8px 8px 30px rgba(0,0,0,.08);animation:float 4s ease-in-out infinite;max-width:320px;margin:0 auto;border-radius:4px;}
 .polaroid:hover{animation:none;transform:rotate(0deg) scale(1.02)!important;}
 
-/* UTILS */
+/* PEOPLE FLIP CARDS */
+.people-flip-card{height:380px;cursor:pointer;perspective:1000px;position:relative;}
+.people-flip-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.4,0,.2,1);}
+.people-flip-card:hover .people-flip-inner{transform:rotateY(180deg);}
+.people-front,.people-back{position:absolute;inset:0;border-radius:16px;backface-visibility:hidden;box-shadow:0 6px 24px rgba(232,121,106,.15);}
+.people-front{overflow:hidden;}
+.people-cover{width:100%;height:100%;position:relative;}
+.people-cover img{width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform .4s;}
+.people-flip-card:hover .people-cover img{transform:scale(1.05);}
+.people-cover-grad{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(42,26,26,.75));}
+.people-front-info{position:absolute;bottom:0;left:0;right:0;padding:20px 22px;}
+.people-front-info h3{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--white);margin-bottom:4px;text-shadow:0 1px 4px rgba(0,0,0,.4);}
+.people-front-info p{color:rgba(255,255,255,.85);font-size:.78rem;font-style:italic;text-shadow:0 1px 3px rgba(0,0,0,.4);}
+.people-flag-badge{position:absolute;top:14px;left:14px;font-size:1.8rem;filter:drop-shadow(0 2px 4px rgba(0,0,0,.3));}
+.people-stamp{position:absolute;top:14px;right:14px;background:transparent;border:2.5px solid var(--deep-coral);border-radius:4px;padding:4px 8px;transform:rotate(15deg);opacity:.9;}
+.people-stamp span{display:block;font-size:.6rem;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:var(--deep-coral);line-height:1.4;font-family:'Lato',sans-serif;}
+.people-back{background:var(--white);transform:rotateY(180deg);border:2px solid var(--warm-pink);padding:28px;display:flex;flex-direction:column;justify-content:center;gap:10px;overflow-y:auto;}
 .wave{width:100%;overflow:hidden;line-height:0;margin-bottom:-2px;}.wave svg{display:block;}
 .gold-line{width:60px;height:4px;background:var(--gold);margin:14px auto;border-radius:2px;}
 
@@ -350,35 +366,72 @@ footer .footer-name{font-family:'Dancing Script',cursive;font-size:1.3rem;color:
   <div class="my-people fade-in">
     <div class="my-people-header">
       <div style="font-family:'Dancing Script',cursive;font-size:2rem;color:var(--deep-coral);">the ones who make life better</div>
-      <h2 style="font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;margin-bottom:10px;">My Favorite People 🐾❤️</h2>
+      <h2 style="font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;margin-bottom:10px;">The Best Company 🐾❤️</h2>
       <div class="gold-line"></div>
       <p style="color:var(--mid);font-style:italic;font-size:.95rem;">Every great adventure is better shared — meet the two who are always along for the ride</p>
     </div>
     <div class="people-grid">
-      <div class="person-card">
-        <div class="person-name-row"><span class="person-emoji">🐾</span><span class="person-name">Presley</span></div>
-        <div class="person-role">Rescue Dog · Black Lab · ~3 Years Old</div>
-        <p>Rescued from a San Antonio shelter and instantly became the best decision I've ever made. Presley is a black long-haired Labrador — which means I have dog hair on absolutely everything I own. I wouldn't have it any other way.</p>
-        <p>Named after the King himself, Elvis Presley 🎸. Full of personality, always the center of attention, and somehow even more charming.</p>
-        <div class="person-tags">
-          <span class="person-tag">🥾 Hiking buddy</span>
-          <span class="person-tag">🥜 Peanut butter obsessed</span>
-          <span class="person-tag">🐾 Requests lots of pets</span>
-          <span class="person-tag">🖤 San Antonio rescue</span>
+
+      <!-- PRESLEY FLIP CARD -->
+      <div class="people-flip-card">
+        <div class="people-flip-inner">
+          <div class="people-front">
+            <div class="people-cover" style="background:linear-gradient(135deg,#f9c5be,#e8796a);">
+              <img src="presley-cover.jpg" alt="Presley" onerror="this.style.display='none'"/>
+              <div class="people-cover-grad"></div>
+            </div>
+            <div class="people-stamp"><span>BEST BOY</span><span>✦</span></div>
+            <div class="people-flag-badge">🐾</div>
+            <div class="people-front-info">
+              <h3>Presley</h3>
+              <p>Rescue Dog · Black Lab · ~3 Years Old</p>
+            </div>
+          </div>
+          <div class="people-back">
+            <div class="person-name-row"><span class="person-emoji">🐾</span><span class="person-name">Presley</span></div>
+            <div class="person-role">Rescue Dog · Black Lab · ~3 Years Old</div>
+            <p>Rescued from a San Antonio shelter and instantly became the best decision I've ever made. Presley is a black long-haired Labrador — which means I have dog hair on absolutely everything I own. I wouldn't have it any other way.</p>
+            <p>Named after the King himself, Elvis Presley 🎸. Full of personality, always the center of attention, and somehow even more charming.</p>
+            <div class="person-tags">
+              <span class="person-tag">🥾 Hiking buddy</span>
+              <span class="person-tag">🥜 Peanut butter obsessed</span>
+              <span class="person-tag">🐾 Requests lots of pets</span>
+              <span class="person-tag">🖤 San Antonio rescue</span>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="person-card">
-        <div class="person-name-row"><span class="person-emoji">❤️</span><span class="person-name">Juan</span></div>
-        <div class="person-role">Boyfriend · Travel Partner · Best Friend</div>
-        <p>My favorite travel partner and the person who makes every adventure twice as fun. A software engineer by day, world explorer by heart — and honestly the best dog dad Presley could ever ask for.</p>
-        <p>Whether we're navigating a new city, hiking a trail, or figuring out where to eat next, Juan makes every moment better. Also Presley's absolute favorite person (don't tell him I said that 🤫).</p>
-        <div class="person-tags">
-          <span class="person-tag">✈️ Travel partner</span>
-          <span class="person-tag">💻 Software engineer</span>
-          <span class="person-tag">🐾 Best dog dad</span>
-          <span class="person-tag">🗺️ Adventure buddy</span>
+
+      <!-- JUAN FLIP CARD -->
+      <div class="people-flip-card">
+        <div class="people-flip-inner">
+          <div class="people-front">
+            <div class="people-cover" style="background:linear-gradient(135deg,#fde0a0,#c9a227);">
+              <img src="juan-cover.jpg" alt="Juan" onerror="this.style.display='none'"/>
+              <div class="people-cover-grad"></div>
+            </div>
+            <div class="people-stamp" style="border-color:var(--gold);"><span style="color:var(--dark-gold);">MY PERSON</span><span style="color:var(--dark-gold);">✦</span></div>
+            <div class="people-flag-badge">❤️</div>
+            <div class="people-front-info">
+              <h3>Juan</h3>
+              <p>Boyfriend · Travel Partner · Best Friend</p>
+            </div>
+          </div>
+          <div class="people-back">
+            <div class="person-name-row"><span class="person-emoji">❤️</span><span class="person-name">Juan</span></div>
+            <div class="person-role">Boyfriend · Travel Partner · Best Friend</div>
+            <p>My favorite travel partner and the person who makes every adventure twice as fun. A software engineer by day, world explorer by heart — and honestly the best dog dad Presley could ever ask for.</p>
+            <p>Whether we're navigating a new city, hiking a trail, or figuring out where to eat next, Juan makes every moment better. Also Presley's absolute favorite person (don't tell him I said that 🤫).</p>
+            <div class="person-tags">
+              <span class="person-tag">✈️ Travel partner</span>
+              <span class="person-tag">💻 Software engineer</span>
+              <span class="person-tag">🐾 Best dog dad</span>
+              <span class="person-tag">🗺️ Adventure buddy</span>
+            </div>
+          </div>
         </div>
       </div>
+
     </div>
   </div>
 </div>
