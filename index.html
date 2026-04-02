@@ -176,7 +176,29 @@ nav{background:var(--white);padding:14px 24px;display:flex;justify-content:space
 .park-tag .park-tooltip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--dark);}
 .park-tag:hover .park-tooltip{opacity:1;}
 
-.pro-hero{background:var(--pink-bg);padding:70px 80px;text-align:center;}
+/* PROFESSIONAL STATS STRIP */
+.pro-stats{background:var(--white);padding:48px 80px;display:flex;align-items:center;justify-content:center;gap:0;}
+.pro-stat-item{flex:1;text-align:center;padding:20px;}
+.pro-stat-num{font-family:'Playfair Display',serif;font-size:3rem;font-weight:900;color:var(--deep-coral);line-height:1;}
+.pro-stat-label{font-size:.78rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--mid);margin-top:8px;font-weight:700;}
+.pro-stat-divider{width:1px;height:60px;background:var(--warm-pink);flex-shrink:0;}
+
+/* APPROACH CARDS */
+.pro-approach{background:var(--pink-bg);padding:50px 80px 60px;display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+.approach-card{background:var(--white);border-radius:16px;padding:32px;border:2px solid transparent;box-shadow:0 4px 20px rgba(232,121,106,.08);transition:all .3s;}
+.approach-card:hover{border-color:var(--gold);box-shadow:6px 6px 0 var(--gold);transform:translateY(-4px);}
+.approach-icon{width:52px;height:52px;background:var(--pink-bg);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;}
+.approach-card h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--dark);margin-bottom:12px;}
+.approach-card p{color:var(--mid);font-size:.88rem;line-height:1.8;}
+.tools-grid{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+.tool-tag{background:var(--pink-bg);color:var(--deep-coral);border:1px solid var(--coral);padding:4px 10px;font-size:.72rem;font-weight:700;border-radius:6px;font-family:'Lato',sans-serif;}
+
+@media(max-width:768px){
+  .pro-stats{flex-wrap:wrap;padding:32px 24px;}
+  .pro-stat-divider{display:none;}
+  .pro-stat-item{min-width:50%;}
+  .pro-approach{grid-template-columns:1fr;padding:32px 24px;}
+}
 .pro-hero .script{font-family:'Dancing Script',cursive;font-size:2rem;color:var(--deep-coral);}
 .pro-hero h2{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;margin-bottom:16px;}
 .pro-hero p{color:var(--mid);max-width:600px;margin:0 auto 32px;line-height:1.8;font-size:.95rem;}
@@ -269,6 +291,8 @@ footer .footer-name{font-family:'Dancing Script',cursive;font-size:1.3rem;color:
   .my-people{padding:40px 24px 60px;}.people-grid{grid-template-columns:1fr;}
   .gallery-section{padding:30px 16px 50px;}.gallery-grid{grid-template-columns:repeat(2,1fr);gap:16px;}
   .about-content h2{font-size:2rem;}.welcome-text h2{font-size:1.8rem;}
+  .approach-grid{grid-template-columns:1fr !important;}
+  div[style*="padding:20px 80px 60px"]{padding:20px 24px 40px !important;}
 }
 @media(max-width:480px){
   .hero-text h1{font-size:2rem;}.links-grid{grid-template-columns:1fr 1fr;}
@@ -482,6 +506,96 @@ footer .footer-name{font-family:'Dancing Script',cursive;font-size:1.3rem;color:
 <!-- PROFESSIONAL -->
 <div id="professional" class="page">
   <div class="pro-hero fade-in">
+    <div class="script" style="font-family:'Dancing Script',cursive;font-size:2rem;color:var(--deep-coral);display:block;">what I do</div>
+    <h2 style="font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:900;margin-bottom:16px;">Professional Life 💼</h2>
+    <div class="gold-line"></div>
+    <p style="color:var(--mid);max-width:600px;margin:0 auto 28px;line-height:1.8;font-size:.95rem;">I sit at the intersection of data, strategy, and technology — turning complex sales and marketing insights into programs that actually move the needle for clients.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+      <button class="btn" onclick="show('contact')">Work With Me →</button>
+      <button class="btn btn-gold">⬇️ Download Resume</button>
+    </div>
+  </div>
+
+  <div class="wave"><svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg"><path fill="#ffffff" d="M0,40 C180,80 360,0 540,40 C720,80 900,0 1080,40 C1260,80 1350,20 1440,40 L1440,70 L0,70 Z"/></svg></div>
+
+  <div class="pro-stats fade-in">
+    <div class="pro-stat-item"><div class="pro-stat-num">3+</div><div class="pro-stat-label">Years at RevShoppe</div></div>
+    <div class="pro-stat-divider"></div>
+    <div class="pro-stat-item"><div class="pro-stat-num">2</div><div class="pro-stat-label">Roles across GTM & Sales</div></div>
+    <div class="pro-stat-divider"></div>
+    <div class="pro-stat-item"><div class="pro-stat-num">17+</div><div class="pro-stat-label">Tools in my stack</div></div>
+    <div class="pro-stat-divider"></div>
+    <div class="pro-stat-item"><div class="pro-stat-num">∞</div><div class="pro-stat-label">Enterprise & Mid-Market clients</div></div>
+  </div>
+
+  <div class="pro-approach fade-in">
+    <div class="approach-card">
+      <div class="approach-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--deep-coral)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div>
+      <h3>My Approach</h3>
+      <p>Data tells a story — and I love being the one to translate it. I turn complex sales and marketing data into clear, actionable strategies that drive real outcomes. From initial diagnostics to executive readouts, every insight actually moves the needle.</p>
+    </div>
+    <div class="approach-card">
+      <div class="approach-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--deep-coral)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+      <h3>What I Do Best</h3>
+      <p>End-to-end platform implementations, enablement rollouts, adoption strategy, and executive-ready reporting. I partner cross-functionally with Sales, Marketing, and Operations to ensure GTM execution stays consistent from onboarding through renewal.</p>
+    </div>
+    <div class="approach-card">
+      <div class="approach-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--deep-coral)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+      <h3>Tools I Love</h3>
+      <div class="tools-grid">
+        <span class="tool-tag">Gong</span><span class="tool-tag">Salesloft</span><span class="tool-tag">Outreach</span><span class="tool-tag">Salesforce</span><span class="tool-tag">ZoomInfo</span><span class="tool-tag">LeadIQ</span><span class="tool-tag">Lusha</span><span class="tool-tag">Relevance AI</span><span class="tool-tag">Vidyard</span><span class="tool-tag">Seismic</span><span class="tool-tag">Asana</span><span class="tool-tag">Confluence</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wave"><svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg"><path fill="#fde8e4" d="M0,20 C240,65 480,5 720,35 C960,65 1200,10 1440,30 L1440,70 L0,70 Z"/></svg></div>
+  <div style="background:var(--pink-bg);padding:20px 40px 10px;text-align:center;">
+    <div style="font-family:'Dancing Script',cursive;font-size:1.8rem;color:var(--deep-coral);">my resume</div>
+  </div>
+  <div class="resume-wrap fade-in">
+    <div class="resume-layout">
+      <div class="resume-sidebar">
+        <h3>Contact</h3>
+        <p>📧 <a href="mailto:alleeramirez.97@gmail.com" style="color:rgba(255,255,255,.9);text-decoration:none;">alleeramirez.97@gmail.com</a></p>
+        <p>💼 <a href="https://www.linkedin.com/in/alleeramirez/" target="_blank" style="color:rgba(255,255,255,.9);text-decoration:none;">linkedin.com/in/alleeramirez</a></p>
+        <div class="gap"></div>
+        <h3>Education</h3>
+        <p>University of Texas at Austin</p>
+        <p style="opacity:.8;font-size:.8rem;">BSA, Human Development &<br/>Family Sciences · 2020</p>
+        <div class="gap"></div>
+        <h3>Certifications</h3>
+        <p>Salesloft Admin</p>
+        <p>Outreach Admin</p>
+        <p>Drift Partner Certified</p>
+        <p style="opacity:.7;">Salesforce Admin (In Progress)</p>
+        <p style="opacity:.7;">Gong Certification (In Progress)</p>
+        <div class="gap"></div>
+        <h3>Tools</h3>
+        <p>Gong · Salesloft · Outreach</p>
+        <p>Salesforce · ZoomInfo</p>
+        <p>LeadIQ · Lusha · Relevance AI</p>
+        <p>Vidyard · Seismic · Asana</p>
+        <p>Confluence · Slack · Zoom</p>
+        <p>Microsoft & Google Suite</p>
+      </div>
+      <div class="resume-main">
+        <h3>Experience</h3>
+        <div class="resume-entry">
+          <h4>Technical Consultant · Tech Lead · Lead Implementation Consultant</h4>
+          <span>RevShoppe · Oct 2022 – Present</span>
+          <p>Administered GTM productivity and enablement tooling across Salesloft, Outreach, and Salesforce — maintaining structured processes, monitoring adoption KPIs, and delivering weekly and monthly usage reporting. Led platform migrations and full-cycle implementations end-to-end, including user provisioning, workflow configuration, enablement, and change management to drive fast time-to-value.</p>
+          <p style="margin-top:8px;color:var(--mid);font-size:.85rem;line-height:1.6;">Produced executive-ready dashboards on activity and usage trends, identified adoption gaps, and implemented action plans to increase engagement and ROI. Partnered cross-functionally with Sales, Marketing, and Operations to drive consistent GTM execution from onboarding through renewal.</p>
+        </div>
+        <div class="resume-entry">
+          <h4>Senior Sales Development Representative</h4>
+          <span>PatientPop · July 2021 – Oct 2022</span>
+          <p>Conducted outbound prospecting to identify and qualify customers across Nashville, TN and Austin, TX markets. Consistently achieved or exceeded sales targets and KPIs while tailoring messaging to prospect pain points and goals. Collaborated with AEs on deal strategy and built strong prospect relationships to drive pipeline and closed-won outcomes.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pro-hero fade-in">
     <div class="script">what I do</div>
     <h2>Professional Life 💼</h2>
     <div class="gold-line"></div>
@@ -586,7 +700,6 @@ footer .footer-name{font-family:'Dancing Script',cursive;font-size:1.3rem;color:
 </div>
 
 <!-- PROJECTS -->
-<div id="projects" class="page">
   <div class="pro-hero fade-in">
     <div class="script">things I've built</div>
     <h2>Projects ✨</h2>
@@ -685,23 +798,30 @@ document.addEventListener('click', function(e){
 });
 
 /* ---- COUNTERS ---- */
-function animateCounter(el){
-  if(el.dataset.animated) return;
+function animateCounter(el, target, suffix, duration){
+  if(!el || el.dataset.animated) return;
   el.dataset.animated = 'true';
-  var target = +el.dataset.target;
-  var suffix = el.dataset.suffix || '';
-  var current = 0;
-  var step = Math.ceil(target/40);
+  var start = 0, step = Math.ceil(target/40);
   var timer = setInterval(function(){
-    current = Math.min(current+step, target);
-    el.textContent = current + suffix;
-    if(current >= target) clearInterval(timer);
-  }, 40);
+    start = Math.min(start+step, target);
+    el.textContent = start + suffix;
+    if(start >= target) clearInterval(timer);
+  }, (duration||1200)/40);
 }
 function checkCounters(){
   document.querySelectorAll('.counter').forEach(function(el){
     var r = el.getBoundingClientRect();
-    if(r.top < window.innerHeight - 40) animateCounter(el);
+    if(r.top < window.innerHeight - 40) animateCounter(el, +el.dataset.target, el.dataset.suffix||'', 1200);
+  });
+  // Professional page stats
+  ['ps1','ps2','ps3','ps4'].forEach(function(id, i){
+    var el = document.getElementById(id);
+    if(!el) return;
+    var r = el.getBoundingClientRect();
+    if(r.top < window.innerHeight - 40){
+      var vals = [{t:4,s:'+'},{t:15,s:'+'},{t:12,s:''},{t:3,s:''}];
+      animateCounter(el, vals[i].t, vals[i].s, 1200);
+    }
   });
 }
 window.addEventListener('scroll', checkCounters);
