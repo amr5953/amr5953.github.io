@@ -6,14 +6,10 @@
 <title>Allee Ramirez</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Dancing+Script:wght@700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
 <style>
-:root {
-  --coral:#f4a59a;--deep-coral:#e8796a;--pink-bg:#fde8e4;--warm-pink:#f9d5cf;
-  --gold:#e8c14a;--dark-gold:#c9a227;--dark:#2a1a1a;--white:#ffffff;--cream:#fff8f6;--mid:#7a4a44;
-}
+:root{--coral:#f4a59a;--deep-coral:#e8796a;--pink-bg:#fde8e4;--warm-pink:#f9d5cf;--gold:#e8c14a;--dark-gold:#c9a227;--dark:#2a1a1a;--white:#ffffff;--cream:#fff8f6;--mid:#7a4a44;}
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--dark);overflow-x:hidden;}
 
-/* NAV */
 nav{background:var(--white);padding:14px 24px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(244,165,154,.2);}
 .nav-logo{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--deep-coral);letter-spacing:2px;text-transform:uppercase;flex-shrink:0;}
 .nav-logo span{color:var(--gold);margin:0 6px;}
@@ -21,88 +17,66 @@ nav{background:var(--white);padding:14px 24px;display:flex;justify-content:space
 .nav-links a{text-decoration:none;color:var(--dark);font-size:0.72rem;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;transition:color .3s;}
 .nav-links a:hover{color:var(--deep-coral);}
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
-.hamburger span{width:22px;height:2px;background:var(--dark);border-radius:2px;transition:all .3s;}
+.hamburger span{width:22px;height:2px;background:var(--dark);border-radius:2px;}
 .mobile-menu{display:none;position:fixed;top:56px;left:0;right:0;background:var(--white);z-index:99;padding:20px;box-shadow:0 8px 24px rgba(0,0,0,.1);}
 .mobile-menu.open{display:block;}
 .mobile-menu a{display:block;padding:12px 0;text-decoration:none;color:var(--dark);font-size:0.85rem;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;border-bottom:1px solid var(--warm-pink);}
 .mobile-menu a:hover{color:var(--deep-coral);}
 
-/* PAGES */
-.page{display:none;}.page.active{display:block;}
+.page{display:none;}.page.active{display:block;animation:pageFadeIn .5s ease;}
+@keyframes pageFadeIn{0%{opacity:0;transform:translateY(12px)}100%{opacity:1;transform:translateY(0)}}
 
-/* STAR */
 .star{position:absolute;color:var(--gold);pointer-events:none;animation:twinkle 3s infinite alternate;}
 @keyframes twinkle{0%{opacity:.4;transform:scale(1)}100%{opacity:1;transform:scale(1.3)}}
 
-/* HERO GRADIENT SHIFT */
-@keyframes heroShift{
-  0%{background:linear-gradient(135deg,#f9d5cf 0%,#fde8e4 40%,#f4c5be 100%);}
-  25%{background:linear-gradient(135deg,#fde8e4 0%,#f9c5be 40%,#f4a59a 100%);}
-  50%{background:linear-gradient(135deg,#f4c5be 0%,#fde8e4 40%,#f9d5cf 100%);}
-  75%{background:linear-gradient(135deg,#fde8e4 0%,#f9d5cf 40%,#f4c5be 100%);}
-  100%{background:linear-gradient(135deg,#f9d5cf 0%,#fde8e4 40%,#f4c5be 100%);}
-}
+/* WAVE LETTER ANIMATION */
+@keyframes letterWave{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.wl{display:inline-block;animation:letterWave 1.4s ease-in-out infinite;color:var(--deep-coral);}
+
+/* HERO GRADIENT */
+@keyframes heroShift{0%{background:linear-gradient(135deg,#f9d5cf,#fde8e4,#f4c5be)}50%{background:linear-gradient(135deg,#f4c5be,#fde8e4,#f9d5cf)}100%{background:linear-gradient(135deg,#f9d5cf,#fde8e4,#f4c5be)}}
 .hero{animation:heroShift 8s ease-in-out infinite;}
 
-/* BUTTON RIPPLE */
-.btn{position:relative;overflow:hidden;}
-.ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,0.4);transform:scale(0);animation:ripple-anim .6s linear;pointer-events:none;}
-@keyframes ripple-anim{to{transform:scale(4);opacity:0;}}
-
-/* PHOTO TILT */
-.dest-card{transform-style:preserve-3d;transition:transform .15s ease,border-color .3s,box-shadow .3s;}
-
-/* PAW PRINT EASTER EGG */
-.paw{position:fixed;pointer-events:none;z-index:9998;font-size:1.6rem;animation:paw-float 1.2s ease-out forwards;}
-@keyframes paw-float{0%{opacity:1;transform:scale(0) rotate(-20deg)}40%{opacity:1;transform:scale(1.2) rotate(10deg)}100%{opacity:0;transform:scale(0.8) rotate(-10deg) translateY(-40px)}}
-
-/* CURSOR SPARKLE */
-.sparkle{position:fixed;pointer-events:none;z-index:9999;font-size:14px;animation:sparkle-fade .8s ease-out forwards;}
-@keyframes sparkle-fade{0%{opacity:1;transform:scale(1) translateY(0)}100%{opacity:0;transform:scale(0.3) translateY(-20px)}}
-
-/* FADE IN ON SCROLL */
-.fade-in{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease;}
-.fade-in.visible{opacity:1;transform:translateY(0);}
-
-/* PAGE TRANSITION */
-.page{display:none;animation:none;}
-.page.active{display:block;animation:pageFadeIn .5s ease;}
-@keyframes pageFadeIn{0%{opacity:0;transform:translateY(12px)}100%{opacity:1;transform:translateY(0)}}
-
-/* FLOATING POLAROID */
-@keyframes float{0%{transform:rotate(-3deg) translateY(0)}50%{transform:rotate(-3deg) translateY(-10px)}100%{transform:rotate(-3deg) translateY(0)}}
-.polaroid{background:var(--white);padding:16px 16px 48px;box-shadow:-8px 8px 30px rgba(0,0,0,.12),8px 8px 30px rgba(0,0,0,.08);animation:float 4s ease-in-out infinite;max-width:320px;margin:0 auto;transition:transform .3s;}
-.polaroid:hover{animation:none;transform:rotate(0deg) scale(1.02)!important;}
-
-/* WAVE */
-.wave{width:100%;overflow:hidden;line-height:0;margin-bottom:-2px;}.wave svg{display:block;}
-.wave-top{width:100%;overflow:hidden;line-height:0;margin-bottom:-2px;transform:rotate(180deg);}
-.wave-top svg{display:block;}
-
-/* HERO */
-.hero{background:var(--pink-bg);padding:60px 80px;display:flex;align-items:center;justify-content:space-between;position:relative;overflow:hidden;min-height:88vh;gap:40px;}
-.hero-blob{position:absolute;width:520px;height:520px;background:radial-gradient(circle,#f9c5be 0%,#fde8e4 70%);border-radius:60% 40% 70% 30%/50% 60% 40% 50%;right:60px;top:50%;transform:translateY(-50%);z-index:0;}
-.hero-text{position:relative;z-index:2;max-width:480px;}
-.hey-there{font-family:'Dancing Script',cursive;font-size:2.4rem;color:var(--deep-coral);margin-bottom:4px;}
-.hero-text h1{font-family:'Playfair Display',serif;font-size:4rem;font-weight:900;color:var(--dark);line-height:1.1;margin-bottom:16px;}
-.hero-text h1 span{color:var(--deep-coral);}
-.hero-subtitle{font-family:'Playfair Display',serif;font-style:italic;font-size:1.05rem;color:var(--mid);line-height:1.7;margin-bottom:12px;}
-.hero-text p{font-size:.92rem;color:var(--mid);line-height:1.8;margin-bottom:32px;}
-.cursor-blink{animation:blink .7s infinite;font-weight:300;color:var(--deep-coral);}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-.hero-btns{display:flex;gap:14px;flex-wrap:wrap;}
-.btn{background:var(--deep-coral);color:var(--white);border:none;padding:13px 30px;border-radius:4px;font-size:.78rem;cursor:pointer;letter-spacing:2px;text-transform:uppercase;font-weight:700;font-family:'Lato',sans-serif;transition:all .3s;display:inline-flex;align-items:center;gap:8px;}
+.btn{position:relative;overflow:hidden;background:var(--deep-coral);color:var(--white);border:none;padding:13px 30px;border-radius:4px;font-size:.78rem;cursor:pointer;letter-spacing:2px;text-transform:uppercase;font-weight:700;font-family:'Lato',sans-serif;transition:all .3s;display:inline-flex;align-items:center;gap:8px;}
 .btn:hover{background:#d4604f;transform:translateY(-2px);}
 .btn-gold{background:var(--gold);color:var(--dark);}
 .btn-gold:hover{background:var(--dark-gold);}
 .btn-outline{background:transparent;border:2px solid var(--deep-coral);color:var(--deep-coral);padding:11px 28px;border-radius:4px;font-size:.78rem;cursor:pointer;letter-spacing:2px;text-transform:uppercase;font-weight:700;font-family:'Lato',sans-serif;transition:all .3s;}
 .btn-outline:hover{background:var(--deep-coral);color:var(--white);}
+.ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.4);transform:scale(0);animation:ripple-anim .6s linear;pointer-events:none;}
+@keyframes ripple-anim{to{transform:scale(4);opacity:0;}}
+
+.paw{position:fixed;pointer-events:none;z-index:9998;animation:paw-float 1.2s ease-out forwards;}
+@keyframes paw-float{0%{opacity:1;transform:scale(0) rotate(-20deg)}40%{opacity:1;transform:scale(1.2) rotate(10deg)}100%{opacity:0;transform:scale(0.8) rotate(-10deg) translateY(-40px)}}
+
+.sparkle{position:fixed;pointer-events:none;z-index:9999;animation:sparkle-fade .8s ease-out forwards;}
+@keyframes sparkle-fade{0%{opacity:1;transform:scale(1) translateY(0)}100%{opacity:0;transform:scale(0.3) translateY(-20px)}}
+
+.fade-in{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease;}
+.fade-in.visible{opacity:1;transform:translateY(0);}
+
+@keyframes float{0%,100%{transform:rotate(-3deg) translateY(0)}50%{transform:rotate(-3deg) translateY(-10px)}}
+.polaroid{background:var(--white);padding:16px 16px 48px;box-shadow:-8px 8px 30px rgba(0,0,0,.12),8px 8px 30px rgba(0,0,0,.08);animation:float 4s ease-in-out infinite;max-width:320px;margin:0 auto;}
+.polaroid:hover{animation:none;transform:rotate(0deg) scale(1.02)!important;}
+
+.wave{width:100%;overflow:hidden;line-height:0;margin-bottom:-2px;}.wave svg{display:block;}
+
+.hero{background:var(--pink-bg);padding:60px 80px;display:flex;align-items:center;justify-content:space-between;position:relative;overflow:hidden;min-height:88vh;gap:40px;}
+.hero-blob{position:absolute;width:520px;height:520px;background:radial-gradient(circle,#f9c5be 0%,#fde8e4 70%);border-radius:60% 40% 70% 30%/50% 60% 40% 50%;right:60px;top:50%;transform:translateY(-50%);z-index:0;}
+.hero-text{position:relative;z-index:2;max-width:480px;}
+.hey-there{font-family:'Dancing Script',cursive;font-size:2.4rem;color:var(--deep-coral);margin-bottom:4px;}
+.hero-text h1{font-family:'Playfair Display',serif;font-size:4rem;font-weight:900;color:var(--dark);line-height:1.1;margin-bottom:16px;}
+.hero-name{display:inline-flex;}
+.hero-subtitle{font-family:'Playfair Display',serif;font-style:italic;font-size:1.05rem;color:var(--mid);line-height:1.7;margin-bottom:12px;min-height:1.7em;}
+.cursor-blink{animation:blink .7s infinite;font-weight:300;color:var(--deep-coral);}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.hero-text p{font-size:.92rem;color:var(--mid);line-height:1.8;margin-bottom:32px;}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;}
 .hero-photo{position:relative;z-index:2;}
 .photo-circle{width:360px;height:360px;border-radius:50%;background:var(--warm-pink);overflow:hidden;border:6px solid var(--white);box-shadow:0 20px 60px rgba(232,121,106,.3),0 0 0 10px rgba(244,165,154,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .photo-circle img{width:100%;height:100%;object-fit:cover;object-position:center 15%;}
 .photo-placeholder{color:var(--white);font-size:.9rem;text-align:center;padding:20px;}
 
-/* WELCOME */
 .welcome-section{background:var(--white);padding:80px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
 .polaroid-img{width:100%;height:280px;background:linear-gradient(135deg,var(--coral),var(--deep-coral));display:flex;align-items:center;justify-content:center;color:white;font-size:.85rem;text-align:center;padding:20px;}
 .polaroid-img img{width:100%;height:100%;object-fit:cover;object-position:center 20%;}
@@ -110,10 +84,9 @@ nav{background:var(--white);padding:14px 24px;display:flex;justify-content:space
 .welcome-text .script{font-family:'Dancing Script',cursive;font-size:2.2rem;color:var(--deep-coral);margin-bottom:8px;}
 .welcome-text h2{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:900;margin-bottom:20px;}
 .welcome-text p{color:var(--mid);line-height:1.9;font-size:.95rem;margin-bottom:16px;}
-.welcome-text p em{font-family:'Playfair Display',serif;font-style:italic;color:var(--dark);}
+.welcome-text p em{font-family:'Playfair Display',serif;font-style:italic;color:var(--deep-coral);}
 
-/* QUICK LINKS */
-.quick-links{background:var(--pink-bg);padding:70px 80px;text-align:center;position:relative;}
+.quick-links{background:var(--pink-bg);padding:70px 80px;text-align:center;}
 .quick-links h2{font-family:'Playfair Display',serif;font-size:2rem;margin-bottom:48px;}
 .quick-links h2 em{font-style:italic;color:var(--deep-coral);}
 .links-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
@@ -122,14 +95,8 @@ nav{background:var(--white);padding:14px 24px;display:flex;justify-content:space
 .link-card .lc-icon{width:52px;height:52px;border:2px solid var(--coral);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin:0 auto 16px;background:var(--pink-bg);}
 .link-card h3{font-size:.78rem;letter-spacing:2px;text-transform:uppercase;font-weight:700;}
 
-/* SECTION HEADER */
-.section-header{text-align:center;padding:70px 20px 40px;}
-.section-header .script{font-family:'Dancing Script',cursive;font-size:2rem;color:var(--deep-coral);}
-.section-header h2{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:900;margin-bottom:12px;}
-.section-header p{color:var(--mid);font-size:.95rem;font-style:italic;max-width:500px;margin:0 auto;}
 .gold-line{width:60px;height:4px;background:var(--gold);margin:14px auto;border-radius:2px;}
 
-/* ABOUT */
 .about-hero{background:var(--pink-bg);padding:80px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;overflow:hidden;}
 .about-photo-wrap{position:relative;}
 .about-photo{width:100%;max-width:340px;aspect-ratio:1;border-radius:50%;background:var(--coral);overflow:hidden;border:6px solid var(--white);box-shadow:0 16px 50px rgba(232,121,106,.3);margin:0 auto;display:flex;align-items:center;justify-content:center;}
@@ -143,7 +110,6 @@ nav{background:var(--white);padding:14px 24px;display:flex;justify-content:space
 .fact-box h3{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--deep-coral);margin-bottom:6px;}
 .fact-box p{font-size:.82rem;color:var(--mid);line-height:1.6;}
 
-/* MY PEOPLE SECTION */
 .my-people{background:var(--white);padding:60px 80px 80px;display:none;}
 #about.active .my-people{display:block;}
 .my-people-header{text-align:center;margin-bottom:48px;}
@@ -158,21 +124,15 @@ nav{background:var(--white);padding:14px 24px;display:flex;justify-content:space
 .person-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
 .person-tag{background:var(--pink-bg);color:var(--deep-coral);border:1px solid var(--coral);padding:5px 12px;font-size:.75rem;font-weight:700;border-radius:20px;font-family:'Lato',sans-serif;}
 
-/* TRAVEL */
 .travel-banner{background:var(--pink-bg);padding:60px 80px;text-align:center;position:relative;overflow:hidden;}
 .travel-banner h2{font-family:'Playfair Display',serif;font-size:3rem;font-weight:900;margin-bottom:12px;}
 .travel-banner p{color:var(--mid);font-style:italic;font-size:1rem;max-width:600px;margin:0 auto;line-height:1.8;}
 
-/* GALLERY */
 .gallery-section{background:var(--white);padding:40px 60px 60px;}
 .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;max-width:1000px;margin:0 auto;}
-
-/* CARD FLIP */
 .dest-card{height:260px;cursor:pointer;perspective:1000px;position:relative;}
 .dest-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.4,0,.2,1);}
 .dest-card:hover .dest-card-inner{transform:rotateY(180deg);}
-
-/* FRONT */
 .dest-front{position:absolute;inset:0;border-radius:14px;overflow:hidden;backface-visibility:hidden;box-shadow:0 6px 24px rgba(232,121,106,.15);}
 .dest-cover{width:100%;height:100%;position:relative;}
 .dest-cover img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
@@ -182,12 +142,8 @@ nav{background:var(--white);padding:14px 24px;display:flex;justify-content:space
 .dest-front-info h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--white);margin-bottom:2px;text-shadow:0 1px 4px rgba(0,0,0,.4);}
 .dest-front-info p{color:rgba(255,255,255,.85);font-size:.75rem;font-style:italic;text-shadow:0 1px 3px rgba(0,0,0,.4);}
 .dest-flag-badge{position:absolute;top:12px;left:12px;font-size:1.6rem;filter:drop-shadow(0 2px 4px rgba(0,0,0,.3));}
-
-/* PASSPORT STAMP */
 .stamp{position:absolute;top:14px;right:14px;background:transparent;border:2.5px solid var(--deep-coral);border-radius:4px;padding:4px 8px;transform:rotate(15deg);opacity:.85;}
 .stamp span{display:block;font-size:.6rem;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:var(--deep-coral);line-height:1.4;font-family:'Lato',sans-serif;}
-
-/* BACK */
 .dest-back{position:absolute;inset:0;border-radius:14px;background:var(--white);backface-visibility:hidden;transform:rotateY(180deg);box-shadow:0 6px 24px rgba(232,121,106,.15);border:2px solid var(--warm-pink);padding:24px;display:flex;flex-direction:column;justify-content:center;gap:12px;}
 .dest-back-flag{font-size:2rem;margin-bottom:4px;}
 .dest-back h3{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--dark);margin-bottom:8px;}
@@ -196,7 +152,6 @@ nav{background:var(--white);padding:14px 24px;display:flex;justify-content:space
 .dest-stat strong{color:var(--dark);font-weight:700;}
 .dest-back-hint{font-size:.7rem;color:var(--coral);letter-spacing:1px;text-transform:uppercase;font-weight:700;margin-top:8px;font-family:'Lato',sans-serif;}
 
-/* LIGHTBOX */
 .lightbox{display:none;position:fixed;inset:0;background:rgba(42,26,26,.85);z-index:999;align-items:center;justify-content:center;padding:20px;}
 .lightbox.open{display:flex;}
 .lightbox-inner{background:var(--white);border-radius:16px;max-width:700px;width:100%;max-height:90vh;overflow-y:auto;position:relative;padding:36px;}
@@ -221,7 +176,6 @@ nav{background:var(--white);padding:14px 24px;display:flex;justify-content:space
 .park-tag .park-tooltip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--dark);}
 .park-tag:hover .park-tooltip{opacity:1;}
 
-/* PROFESSIONAL */
 .pro-hero{background:var(--pink-bg);padding:70px 80px;text-align:center;}
 .pro-hero .script{font-family:'Dancing Script',cursive;font-size:2rem;color:var(--deep-coral);}
 .pro-hero h2{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;margin-bottom:16px;}
@@ -238,7 +192,6 @@ nav{background:var(--white);padding:14px 24px;display:flex;justify-content:space
 .job-item .yr{color:#b08080;font-size:.78rem;font-style:italic;}
 .job-item p{color:var(--mid);font-size:.87rem;margin-top:8px;line-height:1.7;}
 
-/* RESUME */
 .resume-wrap{padding:40px 80px 80px;}
 .resume-layout{display:grid;grid-template-columns:1fr 2fr;gap:0;box-shadow:0 8px 40px rgba(232,121,106,.15);}
 .resume-sidebar{background:var(--deep-coral);padding:40px 28px;color:var(--white);}
@@ -253,7 +206,6 @@ nav{background:var(--white);padding:14px 24px;display:flex;justify-content:space
 .resume-entry span{color:var(--deep-coral);font-size:.82rem;font-weight:700;}
 .resume-entry p{color:var(--mid);font-size:.85rem;margin-top:6px;line-height:1.6;}
 
-/* CONTACT */
 .contact-hero{background:var(--pink-bg);padding:70px 80px;text-align:center;position:relative;overflow:hidden;}
 .contact-hero .script{font-family:'Dancing Script',cursive;font-size:2.2rem;color:var(--deep-coral);}
 .contact-hero h2{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;margin-bottom:16px;}
@@ -261,7 +213,7 @@ nav{background:var(--white);padding:14px 24px;display:flex;justify-content:space
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;padding:50px 80px 80px;}
 .contact-links h3{font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:24px;}
 .c-link{display:flex;align-items:center;gap:18px;text-decoration:none;color:var(--dark);margin-bottom:16px;padding:18px 20px;border:2px solid var(--warm-pink);border-radius:12px;transition:all .3s;background:var(--white);box-shadow:0 2px 12px rgba(232,121,106,.06);}
-.c-link:hover{border-color:var(--gold);background:var(--pink-bg);transform:translateX(6px);box-shadow:0 6px 20px rgba(232,121,106,.15);}
+.c-link:hover{border-color:var(--gold);background:var(--pink-bg);transform:translateX(6px);}
 .c-icon{width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;}
 .contact-form-wrap{background:var(--white);padding:40px;box-shadow:0 8px 32px rgba(232,121,106,.1);border:2px solid var(--warm-pink);}
 .contact-form-wrap h3{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--deep-coral);margin-bottom:24px;}
@@ -271,51 +223,56 @@ nav{background:var(--white);padding:14px 24px;display:flex;justify-content:space
 .fg input:focus,.fg textarea:focus{border-color:var(--deep-coral);}
 .fg textarea{height:120px;resize:vertical;}
 
-footer{background:var(--dark);color:rgba(255,255,255,.6);text-align:center;padding:32px;font-size:.82rem;letter-spacing:1px;}
-footer span{color:var(--gold);}
-footer .script{font-family:'Dancing Script',cursive;font-size:1.4rem;color:var(--coral);display:block;margin-bottom:6px;}
+footer{background:var(--dark);color:rgba(255,255,255,.6);text-align:center;padding:48px 40px;font-size:.82rem;letter-spacing:1px;}
+footer .footer-quote{font-family:'Playfair Display',serif;font-style:italic;font-size:1.05rem;color:rgba(255,255,255,.85);max-width:680px;margin:0 auto 16px;line-height:1.9;}
+footer .footer-line{width:40px;height:2px;background:var(--gold);margin:0 auto 16px;border-radius:2px;}
+footer .footer-name{font-family:'Dancing Script',cursive;font-size:1.3rem;color:var(--coral);}
 
-/* MOBILE */
+/* GLOBAL ROUNDED EDGES */
+.link-card{border-radius:12px;}
+.pro-card{border-radius:12px;}
+.hobby-card{border-radius:12px;}
+.dest-front{border-radius:14px;}
+.dest-back{border-radius:14px;}
+.stamp{border-radius:6px;}
+.skill-tag{border-radius:6px;}
+.park-tag{border-radius:8px;}
+.resume-layout{border-radius:12px;overflow:hidden;}
+.resume-sidebar{border-radius:12px 0 0 12px;}
+.resume-main{border-radius:0 12px 12px 0;}
+.contact-form-wrap{border-radius:12px;}
+.pro-grid .pro-card{border-radius:12px;}
+.lightbox-inner{border-radius:20px;}
+.lb-photo{border-radius:10px;}
+.polaroid{border-radius:4px;}
+.fg input,.fg textarea{border-radius:8px !important;}
+.btn{border-radius:8px !important;}
+.btn-outline{border-radius:8px !important;}
+
 @media(max-width:768px){
-  nav{padding:14px 16px;}
-  .nav-links{display:none;}
-  .hamburger{display:flex;}
+  nav{padding:14px 16px;}.nav-links{display:none;}.hamburger{display:flex;}
   .hero{flex-direction:column;padding:40px 24px;min-height:auto;text-align:center;}
   .hero-blob{width:300px;height:300px;right:-50px;top:0;transform:none;}
-  .hero-text h1{font-size:2.6rem;}
-  .hey-there{font-size:1.8rem;}
-  .hero-btns{justify-content:center;}
-  .photo-circle{width:240px;height:240px;}
+  .hero-text h1{font-size:2.6rem;}.hey-there{font-size:1.8rem;}
+  .hero-btns{justify-content:center;}.photo-circle{width:240px;height:240px;}
   .welcome-section{grid-template-columns:1fr;padding:40px 24px;gap:32px;}
-  .polaroid{max-width:240px;}
-  .polaroid-img{height:200px;}
-  .quick-links{padding:40px 24px;}
-  .links-grid{grid-template-columns:repeat(2,1fr);}
+  .polaroid{max-width:240px;}.polaroid-img{height:200px;}
+  .quick-links{padding:40px 24px;}.links-grid{grid-template-columns:repeat(2,1fr);}
   .about-hero{grid-template-columns:1fr;padding:40px 24px;gap:32px;text-align:center;}
   .gold-badge{right:10px;bottom:0;}
   .facts-strip{grid-template-columns:repeat(2,1fr);padding:40px 24px;}
-  .travel-banner{padding:40px 24px;}
+  .travel-banner{padding:40px 24px;}.travel-banner h2{font-size:2rem;}
   .parks-section{padding:40px 24px;}
-  .pro-hero{padding:40px 24px;}
-  .pro-grid{grid-template-columns:1fr;padding:30px 24px 60px;}
-  .resume-wrap{padding:24px 16px 60px;}
-  .resume-layout{grid-template-columns:1fr;}
-  .contact-hero{padding:40px 24px;}
-  .contact-grid{grid-template-columns:1fr;padding:30px 24px 60px;}
-  .section-header{padding:40px 20px 24px;}
-  .travel-banner h2{font-size:2rem;}
-  .about-content h2{font-size:2rem;}
-  .welcome-text h2{font-size:1.8rem;}
-  .my-people{padding:40px 24px 60px;}
-  .people-grid{grid-template-columns:1fr;}
-  .gallery-section{padding:30px 16px 50px;}
-  .gallery-grid{grid-template-columns:repeat(2,1fr);gap:16px;}
+  .pro-hero{padding:40px 24px;}.pro-grid{grid-template-columns:1fr;padding:30px 24px 60px;}
+  .resume-wrap{padding:24px 16px 60px;}.resume-layout{grid-template-columns:1fr;}
+  .contact-hero{padding:40px 24px;}.contact-grid{grid-template-columns:1fr;padding:30px 24px 60px;}
+  .my-people{padding:40px 24px 60px;}.people-grid{grid-template-columns:1fr;}
+  .gallery-section{padding:30px 16px 50px;}.gallery-grid{grid-template-columns:repeat(2,1fr);gap:16px;}
+  .about-content h2{font-size:2rem;}.welcome-text h2{font-size:1.8rem;}
 }
 @media(max-width:480px){
-  .hero-text h1{font-size:2rem;}
-  .links-grid{grid-template-columns:1fr 1fr;}
-  .facts-strip{grid-template-columns:1fr 1fr;}
-  .gallery-grid{grid-template-columns:1fr;}
+  .hero-text h1{font-size:2rem;}.links-grid{grid-template-columns:1fr 1fr;}
+  .facts-strip{grid-template-columns:1fr 1fr;}.gallery-grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -330,9 +287,7 @@ footer .script{font-family:'Dancing Script',cursive;font-size:1.4rem;color:var(-
     <li><a href="#" onclick="show('projects')">Projects</a></li>
     <li><a href="#" onclick="show('contact')">Contact</a></li>
   </ul>
-  <div class="hamburger" onclick="toggleMenu()" id="hamburger">
-    <span></span><span></span><span></span>
-  </div>
+  <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
@@ -354,7 +309,7 @@ footer .script{font-family:'Dancing Script',cursive;font-size:1.4rem;color:var(-
     <div class="hero-blob"></div>
     <div class="hero-text">
       <div class="hey-there">hey there,</div>
-      <h1>I'm <span>Allee</span><br/>Ramirez.</h1>
+      <h1>I'm <span class="hero-name" id="waveName"></span><br/>Ramirez.</h1>
       <p class="hero-subtitle"><span id="typedText"></span><span class="cursor-blink">|</span></p>
       <p>Welcome to my little corner of the internet — where adventure meets ambition and every trail leads somewhere worth going.</p>
       <div class="hero-btns">
@@ -364,14 +319,14 @@ footer .script{font-family:'Dancing Script',cursive;font-size:1.4rem;color:var(-
     </div>
     <div class="hero-photo">
       <div class="photo-circle">
-        <img src="allee.jpg" alt="Allee Ramirez" onerror="this.parentElement.innerHTML='<div class=\'photo-placeholder\'>📸 Upload allee.jpg to GitHub!</div>'"/>
+        <img src="allee.jpg" alt="Allee Ramirez" onerror="this.parentElement.innerHTML='<div class=\'photo-placeholder\'>📸 Upload allee.jpg!</div>'"/>
       </div>
     </div>
   </div>
   <div class="wave"><svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg"><path fill="#ffffff" d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z"/></svg></div>
   <div class="welcome-section fade-in">
     <div class="polaroid">
-      <div class="polaroid-img"><img src="allee2.jpg" alt="Allee" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;" onerror="this.parentElement.innerHTML='✈️ Travel photo coming soon!'"/></div>
+      <div class="polaroid-img"><img src="allee2.jpg" alt="Allee" onerror="this.parentElement.innerHTML='✈️ Travel photo coming soon!'"/></div>
       <div class="polaroid-label">that's me! 🌸</div>
     </div>
     <div class="welcome-text">
@@ -386,10 +341,30 @@ footer .script{font-family:'Dancing Script',cursive;font-size:1.4rem;color:var(-
   <div class="quick-links fade-in">
     <h2>"Hey Allee, I want to..."</h2>
     <div class="links-grid">
-      <div class="link-card" onclick="show('about')"><div class="lc-icon">🙋‍♀️</div><h3>Get to Know You</h3></div>
-      <div class="link-card" onclick="show('travel')"><div class="lc-icon">✈️</div><h3>See Your Travels</h3></div>
-      <div class="link-card" onclick="show('professional')"><div class="lc-icon">💼</div><h3>Work With You</h3></div>
-      <div class="link-card" onclick="show('projects')"><div class="lc-icon">✨</div><h3>See Your Projects</h3></div>
+      <div class="link-card" onclick="show('about')">
+        <div class="lc-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--deep-coral)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        </div>
+        <h3>Get to Know You</h3>
+      </div>
+      <div class="link-card" onclick="show('travel')">
+        <div class="lc-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--deep-coral)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.5A9.77 9.77 0 0 1 12 21 9.77 9.77 0 0 1 2 12 9.77 9.77 0 0 1 12 3"/><path d="M18 3l4 4-4 4"/><path d="M22 7H16"/></svg>
+        </div>
+        <h3>See Your Travels</h3>
+      </div>
+      <div class="link-card" onclick="show('professional')">
+        <div class="lc-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--deep-coral)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+        </div>
+        <h3>Work With You</h3>
+      </div>
+      <div class="link-card" onclick="show('projects')">
+        <div class="lc-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--deep-coral)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <h3>See Your Projects</h3>
+      </div>
     </div>
   </div>
 </div>
@@ -400,16 +375,14 @@ footer .script{font-family:'Dancing Script',cursive;font-size:1.4rem;color:var(-
     <span class="star" style="position:absolute;top:12%;left:4%">✦</span>
     <span class="star" style="position:absolute;bottom:15%;left:6%;animation-delay:1s">★</span>
     <div class="about-photo-wrap">
-      <div class="about-photo">
-        <img src="allee.jpg" alt="Allee Ramirez" onerror="this.style.display='none'"/>
-      </div>
-      <div class="gold-badge">Solo<br/>Traveler<br/>✈️</div>
+      <div class="about-photo"><img src="allee.jpg" alt="Allee Ramirez" onerror="this.style.display='none'"/></div>
+
     </div>
     <div class="about-content">
       <div class="script">a little about me</div>
       <h2>Hello, I'm Allee 🌸</h2>
       <p>I'm a curious soul who believes the best way to grow is to get a little uncomfortable. I help companies bridge the gap between technical products and the market — but my real passion? Exploring the world one country at a time.</p>
-      <p>In the summer of 2024, I took the leap and spent 2 months solo traveling across Europe with nothing but my laptop and a backpack. A month in Portugal exploring Lisbon, Porto and the Algarve, two weeks in Spain hitting Barcelona, Valencia and Seville, and two weeks living like a local in Florence, Italy. I worked remotely from cafés, stayed in hostels, made friends with strangers who became family, and found a version of myself I didn't know existed.</p>
+      <p>In the summer of 2024, I took the leap and spent 2 months solo traveling across Europe with nothing but my laptop and a backpack. A month in Portugal exploring Lisbon, Porto and the Algarve, two weeks in Spain hitting Barcelona, Valencia and Seville, and two weeks living like a local in Florence, Italy.</p>
       <p>When I'm not traveling internationally, you'll find me hiking trails at US national parks with my dog Presley (yes, named after Elvis 🎸), hunting down the best local food spots, or planning the next adventure.</p>
       <button class="btn" onclick="show('travel')">See My Travels →</button>
     </div>
@@ -471,176 +444,26 @@ footer .script{font-family:'Dancing Script',cursive;font-size:1.4rem;color:var(-
   <div class="wave"><svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg"><path fill="#ffffff" d="M0,40 C180,80 360,0 540,40 C720,80 900,0 1080,40 C1260,80 1350,20 1440,40 L1440,70 L0,70 Z"/></svg></div>
   <div class="gallery-section">
     <div style="text-align:center;font-family:'Dancing Script',cursive;font-size:1.8rem;color:var(--deep-coral);margin-bottom:24px;">explore by destination</div>
-    <div class="gallery-grid" id="galleryGrid">
-      <div class="dest-card" onclick="openGallery('portugal')">
-        <div class="dest-card-inner">
-          <div class="dest-front">
-            <div class="dest-cover" style="background:linear-gradient(135deg,#f4a59a,#e8796a);"><img src="portugal-1.jpg" alt="Portugal" onerror="this.style.display='none'"/><div class="dest-cover-grad"></div></div>
-            <div class="dest-flag-badge">🇵🇹</div>
-            <div class="stamp"><span>VISITED</span><span>✦</span></div>
-            <div class="dest-front-info"><h3>Portugal</h3><p>Lisbon · Porto · Algarve</p></div>
-          </div>
-          <div class="dest-back">
-            <div class="dest-back-flag">🇵🇹</div><h3>Portugal</h3>
-            <div class="dest-stat"><span class="ds-icon">🗓️</span><span><strong>August 2024</strong> · 1 month</span></div>
-            <div class="dest-stat"><span class="ds-icon">📍</span><span>Lisbon, Porto & the Algarve</span></div>
-            <div class="dest-stat"><span class="ds-icon">🍽️</span><span><strong>Fav thing:</strong> Pastel de nata at 7am</span></div>
-            <div class="dest-back-hint">Click to see photos →</div>
-          </div>
-        </div>
-      </div>
-      <div class="dest-card" onclick="openGallery('spain')">
-        <div class="dest-card-inner">
-          <div class="dest-front">
-            <div class="dest-cover" style="background:linear-gradient(135deg,#e8c14a,#c9a227);"><img src="spain-1.jpg" alt="Spain" onerror="this.style.display='none'"/><div class="dest-cover-grad"></div></div>
-            <div class="dest-flag-badge">🇪🇸</div>
-            <div class="stamp"><span>VISITED</span><span>✦</span></div>
-            <div class="dest-front-info"><h3>Spain</h3><p>Barcelona · Valencia · Seville</p></div>
-          </div>
-          <div class="dest-back">
-            <div class="dest-back-flag">🇪🇸</div><h3>Spain</h3>
-            <div class="dest-stat"><span class="ds-icon">🗓️</span><span><strong>September 2024</strong> · 2 weeks</span></div>
-            <div class="dest-stat"><span class="ds-icon">📍</span><span>Barcelona, Valencia & Seville</span></div>
-            <div class="dest-stat"><span class="ds-icon">🍽️</span><span><strong>Fav thing:</strong> Paella in Valencia</span></div>
-            <div class="dest-back-hint">Click to see photos →</div>
-          </div>
-        </div>
-      </div>
-      <div class="dest-card" onclick="openGallery('italy')">
-        <div class="dest-card-inner">
-          <div class="dest-front">
-            <div class="dest-cover" style="background:linear-gradient(135deg,#f9c5be,#f4a59a);"><img src="italy-1.jpg" alt="Italy" onerror="this.style.display='none'"/><div class="dest-cover-grad"></div></div>
-            <div class="dest-flag-badge">🇮🇹</div>
-            <div class="stamp"><span>VISITED</span><span>✦</span></div>
-            <div class="dest-front-info"><h3>Italy</h3><p>Florence</p></div>
-          </div>
-          <div class="dest-back">
-            <div class="dest-back-flag">🇮🇹</div><h3>Italy</h3>
-            <div class="dest-stat"><span class="ds-icon">🗓️</span><span><strong>September 2024</strong> · 2 weeks</span></div>
-            <div class="dest-stat"><span class="ds-icon">📍</span><span>Florence</span></div>
-            <div class="dest-stat"><span class="ds-icon">🍽️</span><span><strong>Fav thing:</strong> Sunset at Ponte Vecchio</span></div>
-            <div class="dest-back-hint">Click to see photos →</div>
-          </div>
-        </div>
-      </div>
-      <div class="dest-card" onclick="openGallery('peru')">
-        <div class="dest-card-inner">
-          <div class="dest-front">
-            <div class="dest-cover" style="background:linear-gradient(135deg,#c8a870,#a88840);"><img src="peru-1.jpg" alt="Peru" onerror="this.style.display='none'"/><div class="dest-cover-grad"></div></div>
-            <div class="dest-flag-badge">🇵🇪</div>
-            <div class="stamp"><span>VISITED</span><span>✦</span></div>
-            <div class="dest-front-info"><h3>Peru</h3><p>Machu Picchu & beyond</p></div>
-          </div>
-          <div class="dest-back">
-            <div class="dest-back-flag">🇵🇪</div><h3>Peru</h3>
-            <div class="dest-stat"><span class="ds-icon">🗓️</span><span><strong>May 2025</strong></span></div>
-            <div class="dest-stat"><span class="ds-icon">📍</span><span>Lima, Cusco, Huacachina & Aguas Calientes</span></div>
-            <div class="dest-stat"><span class="ds-icon">🏔️</span><span><strong>Fav thing:</strong> Vibrant culture + mountains & nature</span></div>
-            <div class="dest-back-hint">Click to see photos →</div>
-          </div>
-        </div>
-      </div>
-      <div class="dest-card" onclick="openGallery('singapore')">
-        <div class="dest-card-inner">
-          <div class="dest-front">
-            <div class="dest-cover" style="background:linear-gradient(135deg,#e8796a,#c9574a);"><img src="singapore-1.jpg" alt="Singapore" onerror="this.style.display='none'"/><div class="dest-cover-grad"></div></div>
-            <div class="dest-flag-badge">🇸🇬</div>
-            <div class="stamp"><span>VISITED</span><span>✦</span></div>
-            <div class="dest-front-info"><h3>Singapore</h3><p>Southeast Asia's gem</p></div>
-          </div>
-          <div class="dest-back">
-            <div class="dest-back-flag">🇸🇬</div><h3>Singapore</h3>
-            <div class="dest-stat"><span class="ds-icon">🗓️</span><span><strong>January 2020</strong></span></div>
-            <div class="dest-stat"><span class="ds-icon">📍</span><span>Singapore City</span></div>
-            <div class="dest-stat"><span class="ds-icon">🌆</span><span><strong>Fav thing:</strong> Gardens by the Bay</span></div>
-            <div class="dest-back-hint">Click to see photos →</div>
-          </div>
-        </div>
-      </div>
-      <div class="dest-card" onclick="openGallery('malaysia')">
-        <div class="dest-card-inner">
-          <div class="dest-front">
-            <div class="dest-cover" style="background:linear-gradient(135deg,#f4a59a,#c9956a);"><img src="malaysia-1.jpg" alt="Malaysia" onerror="this.style.display='none'"/><div class="dest-cover-grad"></div></div>
-            <div class="dest-flag-badge">🇲🇾</div>
-            <div class="stamp"><span>VISITED</span><span>✦</span></div>
-            <div class="dest-front-info"><h3>Malaysia</h3><p>Culture & jungle</p></div>
-          </div>
-          <div class="dest-back">
-            <div class="dest-back-flag">🇲🇾</div><h3>Malaysia</h3>
-            <div class="dest-stat"><span class="ds-icon">🗓️</span><span><strong>January 2020</strong></span></div>
-            <div class="dest-stat"><span class="ds-icon">📍</span><span>Kuala Lumpur & beyond</span></div>
-            <div class="dest-stat"><span class="ds-icon">🍛</span><span><strong>Fav thing:</strong> Nasi lemak 🤤</span></div>
-            <div class="dest-back-hint">Click to see photos →</div>
-          </div>
-        </div>
-      </div>
-      <div class="dest-card" onclick="openGallery('indonesia')">
-        <div class="dest-card-inner">
-          <div class="dest-front">
-            <div class="dest-cover" style="background:linear-gradient(135deg,#e8c14a,#e8796a);"><img src="indonesia-1.jpg" alt="Indonesia" onerror="this.style.display='none'"/><div class="dest-cover-grad"></div></div>
-            <div class="dest-flag-badge">🇮🇩</div>
-            <div class="stamp"><span>VISITED</span><span>✦</span></div>
-            <div class="dest-front-info"><h3>Indonesia</h3><p>Islands & temples</p></div>
-          </div>
-          <div class="dest-back">
-            <div class="dest-back-flag">🇮🇩</div><h3>Indonesia</h3>
-            <div class="dest-stat"><span class="ds-icon">🗓️</span><span><strong>January 2020</strong></span></div>
-            <div class="dest-stat"><span class="ds-icon">📍</span><span>Ubud, Bali & Lombok</span></div>
-            <div class="dest-stat"><span class="ds-icon">🌊</span><span><strong>Fav thing:</strong> Swimming with manta rays</span></div>
-            <div class="dest-back-hint">Click to see photos →</div>
-          </div>
-        </div>
-      </div>
-      <div class="dest-card" onclick="openGallery('mexico')">
-        <div class="dest-card-inner">
-          <div class="dest-front">
-            <div class="dest-cover" style="background:linear-gradient(135deg,#f9d5cf,#e8796a);"><img src="mexico-1.jpg" alt="Mexico" onerror="this.style.display='none'"/><div class="dest-cover-grad"></div></div>
-            <div class="dest-flag-badge">🇲🇽</div>
-            <div class="stamp"><span>VISITED</span><span>✦</span></div>
-            <div class="dest-front-info"><h3>Mexico</h3><p>Color & tacos</p></div>
-          </div>
-          <div class="dest-back">
-            <div class="dest-back-flag">🇲🇽</div><h3>Mexico</h3>
-            <div class="dest-stat"><span class="ds-icon">🗓️</span><span><strong>February 2023</strong></span></div>
-            <div class="dest-stat"><span class="ds-icon">📍</span><span>Mexico City</span></div>
-            <div class="dest-stat"><span class="ds-icon">🌮</span><span><strong>Fav thing:</strong> Tacossss! ¡Muy sabroso! 😋</span></div>
-            <div class="dest-back-hint">Click to see photos →</div>
-          </div>
-        </div>
-      </div>
-      <div class="dest-card" onclick="openGallery('canada')">
-        <div class="dest-card-inner">
-          <div class="dest-front">
-            <div class="dest-cover" style="background:linear-gradient(135deg,#c8dce8,#a0b8c4);"><img src="canada-1.jpg" alt="Canada" onerror="this.style.display='none'"/><div class="dest-cover-grad"></div></div>
-            <div class="dest-flag-badge">🇨🇦</div>
-            <div class="stamp"><span>VISITED</span><span>✦</span></div>
-            <div class="dest-front-info"><h3>Canada</h3><p>Mountains & maple</p></div>
-          </div>
-          <div class="dest-back">
-            <div class="dest-back-flag">🇨🇦</div><h3>Canada</h3>
-            <div class="dest-stat"><span class="ds-icon">🗓️</span><span><strong>January 2024</strong></span></div>
-            <div class="dest-stat"><span class="ds-icon">📍</span><span>Alberta</span></div>
-            <div class="dest-stat"><span class="ds-icon">🏔️</span><span><strong>Fav thing:</strong> Hiking Banff National Park. UNREAL!!</span></div>
-            <div class="dest-back-hint">Click to see photos →</div>
-          </div>
-        </div>
-      </div>
+    <div class="gallery-grid">
+      <div class="dest-card" onclick="openGallery('portugal')"><div class="dest-card-inner"><div class="dest-front"><div class="dest-cover" style="background:linear-gradient(135deg,#f4a59a,#e8796a);"><img src="portugal-1.jpg" alt="Portugal" onerror="this.style.display='none'"/><div class="dest-cover-grad"></div></div><div class="dest-flag-badge">🇵🇹</div><div class="stamp"><span>VISITED</span><span>✦</span></div><div class="dest-front-info"><h3>Portugal</h3><p>Lisbon · Porto · Algarve</p></div></div><div class="dest-back"><div class="dest-back-flag">🇵🇹</div><h3>Portugal</h3><div class="dest-stat"><span class="ds-icon">🗓️</span><span><strong>August 2024</strong> · 1 month</span></div><div class="dest-stat"><span class="ds-icon">📍</span><span>Lisbon, Porto & the Algarve</span></div><div class="dest-stat"><span class="ds-icon">🍽️</span><span><strong>Fav thing:</strong> Pastel de nata at 7am</span></div><div class="dest-back-hint">Click to see photos →</div></div></div></div>
+      <div class="dest-card" onclick="openGallery('spain')"><div class="dest-card-inner"><div class="dest-front"><div class="dest-cover" style="background:linear-gradient(135deg,#e8c14a,#c9a227);"><img src="spain-1.jpg" alt="Spain" onerror="this.style.display='none'"/><div class="dest-cover-grad"></div></div><div class="dest-flag-badge">🇪🇸</div><div class="stamp"><span>VISITED</span><span>✦</span></div><div class="dest-front-info"><h3>Spain</h3><p>Barcelona · Valencia · Seville</p></div></div><div class="dest-back"><div class="dest-back-flag">🇪🇸</div><h3>Spain</h3><div class="dest-stat"><span class="ds-icon">🗓️</span><span><strong>September 2024</strong> · 2 weeks</span></div><div class="dest-stat"><span class="ds-icon">📍</span><span>Barcelona, Valencia & Seville</span></div><div class="dest-stat"><span class="ds-icon">🍽️</span><span><strong>Fav thing:</strong> Paella in Valencia</span></div><div class="dest-back-hint">Click to see photos →</div></div></div></div>
+      <div class="dest-card" onclick="openGallery('italy')"><div class="dest-card-inner"><div class="dest-front"><div class="dest-cover" style="background:linear-gradient(135deg,#f9c5be,#f4a59a);"><img src="italy-1.jpg" alt="Italy" onerror="this.style.display='none'"/><div class="dest-cover-grad"></div></div><div class="dest-flag-badge">🇮🇹</div><div class="stamp"><span>VISITED</span><span>✦</span></div><div class="dest-front-info"><h3>Italy</h3><p>Florence</p></div></div><div class="dest-back"><div class="dest-back-flag">🇮🇹</div><h3>Italy</h3><div class="dest-stat"><span class="ds-icon">🗓️</span><span><strong>September 2024</strong> · 2 weeks</span></div><div class="dest-stat"><span class="ds-icon">📍</span><span>Florence</span></div><div class="dest-stat"><span class="ds-icon">🍽️</span><span><strong>Fav thing:</strong> Sunset at Ponte Vecchio</span></div><div class="dest-back-hint">Click to see photos →</div></div></div></div>
+      <div class="dest-card" onclick="openGallery('peru')"><div class="dest-card-inner"><div class="dest-front"><div class="dest-cover" style="background:linear-gradient(135deg,#c8a870,#a88840);"><img src="peru-1.jpg" alt="Peru" onerror="this.style.display='none'"/><div class="dest-cover-grad"></div></div><div class="dest-flag-badge">🇵🇪</div><div class="stamp"><span>VISITED</span><span>✦</span></div><div class="dest-front-info"><h3>Peru</h3><p>Machu Picchu & beyond</p></div></div><div class="dest-back"><div class="dest-back-flag">🇵🇪</div><h3>Peru</h3><div class="dest-stat"><span class="ds-icon">🗓️</span><span><strong>May 2025</strong></span></div><div class="dest-stat"><span class="ds-icon">📍</span><span>Lima, Cusco, Huacachina & Aguas Calientes</span></div><div class="dest-stat"><span class="ds-icon">🏔️</span><span><strong>Fav thing:</strong> Vibrant culture + mountains & nature</span></div><div class="dest-back-hint">Click to see photos →</div></div></div></div>
+      <div class="dest-card" onclick="openGallery('singapore')"><div class="dest-card-inner"><div class="dest-front"><div class="dest-cover" style="background:linear-gradient(135deg,#e8796a,#c9574a);"><img src="singapore-1.jpg" alt="Singapore" onerror="this.style.display='none'"/><div class="dest-cover-grad"></div></div><div class="dest-flag-badge">🇸🇬</div><div class="stamp"><span>VISITED</span><span>✦</span></div><div class="dest-front-info"><h3>Singapore</h3><p>Southeast Asia's gem</p></div></div><div class="dest-back"><div class="dest-back-flag">🇸🇬</div><h3>Singapore</h3><div class="dest-stat"><span class="ds-icon">🗓️</span><span><strong>January 2020</strong></span></div><div class="dest-stat"><span class="ds-icon">📍</span><span>Singapore City</span></div><div class="dest-stat"><span class="ds-icon">🌆</span><span><strong>Fav thing:</strong> Gardens by the Bay</span></div><div class="dest-back-hint">Click to see photos →</div></div></div></div>
+      <div class="dest-card" onclick="openGallery('malaysia')"><div class="dest-card-inner"><div class="dest-front"><div class="dest-cover" style="background:linear-gradient(135deg,#f4a59a,#c9956a);"><img src="malaysia-1.jpg" alt="Malaysia" onerror="this.style.display='none'"/><div class="dest-cover-grad"></div></div><div class="dest-flag-badge">🇲🇾</div><div class="stamp"><span>VISITED</span><span>✦</span></div><div class="dest-front-info"><h3>Malaysia</h3><p>Culture & jungle</p></div></div><div class="dest-back"><div class="dest-back-flag">🇲🇾</div><h3>Malaysia</h3><div class="dest-stat"><span class="ds-icon">🗓️</span><span><strong>January 2020</strong></span></div><div class="dest-stat"><span class="ds-icon">📍</span><span>Kuala Lumpur & beyond</span></div><div class="dest-stat"><span class="ds-icon">🍛</span><span><strong>Fav thing:</strong> Nasi lemak 🤤</span></div><div class="dest-back-hint">Click to see photos →</div></div></div></div>
+      <div class="dest-card" onclick="openGallery('indonesia')"><div class="dest-card-inner"><div class="dest-front"><div class="dest-cover" style="background:linear-gradient(135deg,#e8c14a,#e8796a);"><img src="indonesia-1.jpg" alt="Indonesia" onerror="this.style.display='none'"/><div class="dest-cover-grad"></div></div><div class="dest-flag-badge">🇮🇩</div><div class="stamp"><span>VISITED</span><span>✦</span></div><div class="dest-front-info"><h3>Indonesia</h3><p>Islands & temples</p></div></div><div class="dest-back"><div class="dest-back-flag">🇮🇩</div><h3>Indonesia</h3><div class="dest-stat"><span class="ds-icon">🗓️</span><span><strong>January 2020</strong></span></div><div class="dest-stat"><span class="ds-icon">📍</span><span>Ubud, Bali & Lombok</span></div><div class="dest-stat"><span class="ds-icon">🌊</span><span><strong>Fav thing:</strong> Swimming with manta rays</span></div><div class="dest-back-hint">Click to see photos →</div></div></div></div>
+      <div class="dest-card" onclick="openGallery('mexico')"><div class="dest-card-inner"><div class="dest-front"><div class="dest-cover" style="background:linear-gradient(135deg,#f9d5cf,#e8796a);"><img src="mexico-1.jpg" alt="Mexico" onerror="this.style.display='none'"/><div class="dest-cover-grad"></div></div><div class="dest-flag-badge">🇲🇽</div><div class="stamp"><span>VISITED</span><span>✦</span></div><div class="dest-front-info"><h3>Mexico</h3><p>Color & tacos</p></div></div><div class="dest-back"><div class="dest-back-flag">🇲🇽</div><h3>Mexico</h3><div class="dest-stat"><span class="ds-icon">🗓️</span><span><strong>February 2023</strong></span></div><div class="dest-stat"><span class="ds-icon">📍</span><span>Mexico City</span></div><div class="dest-stat"><span class="ds-icon">🌮</span><span><strong>Fav thing:</strong> Tacossss! ¡Muy sabroso! 😋</span></div><div class="dest-back-hint">Click to see photos →</div></div></div></div>
+      <div class="dest-card" onclick="openGallery('canada')"><div class="dest-card-inner"><div class="dest-front"><div class="dest-cover" style="background:linear-gradient(135deg,#c8dce8,#a0b8c4);"><img src="canada-1.jpg" alt="Canada" onerror="this.style.display='none'"/><div class="dest-cover-grad"></div></div><div class="dest-flag-badge">🇨🇦</div><div class="stamp"><span>VISITED</span><span>✦</span></div><div class="dest-front-info"><h3>Canada</h3><p>Mountains & maple</p></div></div><div class="dest-back"><div class="dest-back-flag">🇨🇦</div><h3>Canada</h3><div class="dest-stat"><span class="ds-icon">🗓️</span><span><strong>January 2024</strong></span></div><div class="dest-stat"><span class="ds-icon">📍</span><span>Alberta</span></div><div class="dest-stat"><span class="ds-icon">🏔️</span><span><strong>Fav thing:</strong> Hiking Banff National Park. UNREAL!!</span></div><div class="dest-back-hint">Click to see photos →</div></div></div></div>
     </div>
   </div>
-
-  <!-- LIGHTBOX -->
   <div class="lightbox" id="lightbox" onclick="closeLightbox()">
     <div class="lightbox-inner" onclick="event.stopPropagation()">
       <button class="lb-close" onclick="closeLightbox()">✕</button>
-      <div class="lb-header">
-        <span class="lb-flag" id="lbFlag"></span>
-        <div><h3 id="lbTitle"></h3><p id="lbSub"></p></div>
-      </div>
+      <div class="lb-header"><span class="lb-flag" id="lbFlag"></span><div><h3 id="lbTitle"></h3><p id="lbSub"></p></div></div>
       <div class="lb-story" id="lbStory"></div>
       <div class="lb-photos" id="lbPhotos"></div>
     </div>
   </div>
-
   <div class="wave"><svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg"><path fill="#fde8e4" d="M0,20 C180,60 360,0 540,35 C720,70 900,10 1080,35 C1260,60 1350,15 1440,30 L1440,70 L0,70 Z"/></svg></div>
   <div class="parks-section">
     <h3>closer to home</h3>
@@ -656,13 +479,13 @@ footer .script{font-family:'Dancing Script',cursive;font-size:1.4rem;color:var(-
   </div>
 </div>
 
-<!-- PROFESSIONAL + RESUME COMBINED -->
+<!-- PROFESSIONAL -->
 <div id="professional" class="page">
   <div class="pro-hero fade-in">
     <div class="script">what I do</div>
     <h2>Professional Life 💼</h2>
     <div class="gold-line"></div>
-    <p>I help companies bridge the gap between technical products and market adoption — building strategies that drive real revenue and growth.</p>
+    <p>I sit at the intersection of data, strategy, and technology — turning complex sales and marketing insights into programs that actually move the needle for clients.</p>
     <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:8px;">
       <button class="btn" onclick="show('contact')">Work With Me →</button>
       <button class="btn btn-gold">⬇️ Download Resume</button>
@@ -673,33 +496,37 @@ footer .script{font-family:'Dancing Script',cursive;font-size:1.4rem;color:var(-
     <div class="pro-card">
       <h3>💼 Experience</h3>
       <div class="job-item">
-        <h4>Technical GTM Consultant</h4>
+        <h4>Technical Consultant · Tech Lead · Lead Implementation Consultant</h4>
         <div class="co">RevShoppe</div>
-        <div class="yr">Current Position</div>
-        <p>Building go-to-market strategies that connect technical products to the right audiences and drive scalable revenue growth.</p>
+        <div class="yr">Oct 2022 – Present</div>
+        <p>I'm the insights professional behind client programs — extracting and analyzing data from CRM systems and sales engagement platforms to translate complex information into clear, actionable strategies. I lead full-cycle platform implementations, coordinate enablement rollouts, and deliver executive-ready reporting that drives adoption and ROI across midmarket and enterprise clients.</p>
       </div>
       <div class="job-item">
-        <h4>Previous Role Title</h4>
-        <div class="co">Company Name</div>
-        <div class="yr">Years</div>
-        <p>Add a description of your previous role here.</p>
+        <h4>Senior Sales Development Representative</h4>
+        <div class="co">PatientPop</div>
+        <div class="yr">July 2021 – Oct 2022</div>
+        <p>Conducted outbound prospecting across Nashville and Austin markets, consistently exceeding sales targets and KPIs. Collaborated with AEs on deal strategy and built strong prospect relationships to drive pipeline growth.</p>
       </div>
     </div>
     <div class="pro-card">
       <h3>🛠️ Skills & Expertise</h3>
-      <span class="skill-tag">Go-to-Market Strategy</span>
-      <span class="skill-tag">Technical Consulting</span>
+      <span class="skill-tag">CRM Analytics</span>
+      <span class="skill-tag">Sales Engagement Platforms</span>
+      <span class="skill-tag">Business Intelligence</span>
+      <span class="skill-tag">GTM Strategy</span>
+      <span class="skill-tag">Data-Driven Insights</span>
+      <span class="skill-tag">Program Evaluation</span>
+      <span class="skill-tag">ROI Reporting</span>
+      <span class="skill-tag">Executive Presentations</span>
+      <span class="skill-tag">Cross-functional Collaboration</span>
       <span class="skill-tag">Sales Enablement</span>
-      <span class="skill-tag">CRM & RevOps</span>
-      <span class="skill-tag">Product Positioning</span>
-      <span class="skill-tag">Client Strategy</span>
-      <span class="skill-tag">Data Analysis</span>
-      <span class="skill-tag">Cross-functional Leadership</span>
-      <span class="skill-tag">Remote Work</span>
+      <span class="skill-tag">Data Integrity</span>
+      <span class="skill-tag">Business Case Development</span>
+      <span class="skill-tag">Strategic Recommendations</span>
     </div>
     <div class="pro-card">
       <h3>🌟 What Drives Me</h3>
-      <p style="color:var(--mid);font-size:.92rem;line-height:1.9">I believe the best work happens at the intersection of people, process, and technology. I'm passionate about helping teams work smarter and businesses grow with intention.</p>
+      <p style="color:var(--mid);font-size:.92rem;line-height:1.9">Data tells a story — and I love being the one to translate it. I'm passionate about helping clients move from information overload to clear direction, using analytics to build smarter strategies and measure what actually matters. The best outcomes happen when people, process, and technology are all working together.</p>
     </div>
     <div class="pro-card">
       <h3>🎓 Education</h3>
@@ -711,44 +538,47 @@ footer .script{font-family:'Dancing Script',cursive;font-size:1.4rem;color:var(-
     </div>
   </div>
   <div class="wave"><svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg"><path fill="#fde8e4" d="M0,20 C240,65 480,5 720,35 C960,65 1200,10 1440,30 L1440,70 L0,70 Z"/></svg></div>
-  <div style="background:var(--pink-bg);padding:20px 40px 10px;text-align:center;" class="fade-in">
+  <div style="background:var(--pink-bg);padding:20px 40px 10px;text-align:center;">
     <div style="font-family:'Dancing Script',cursive;font-size:1.8rem;color:var(--deep-coral);">my resume</div>
   </div>
   <div class="resume-wrap fade-in">
     <div class="resume-layout">
       <div class="resume-sidebar">
         <h3>Contact</h3>
-        <p>📧 alleeramirez.97@gmail.com</p>
-        <p>💼 linkedin.com/in/alleeramirez</p>
+        <p>📧 <a href="mailto:alleeramirez.97@gmail.com" style="color:rgba(255,255,255,.9);text-decoration:none;">alleeramirez.97@gmail.com</a></p>
+        <p>💼 <a href="https://www.linkedin.com/in/alleeramirez/" target="_blank" style="color:rgba(255,255,255,.9);text-decoration:none;">linkedin.com/in/alleeramirez</a></p>
         <div class="gap"></div>
         <h3>Education</h3>
-        <p>The University of Texas<br/>at Austin</p>
+        <p>University of Texas at Austin</p>
+        <p style="opacity:.8;font-size:.8rem;">BSA, Human Development &<br/>Family Sciences · 2020</p>
         <div class="gap"></div>
-        <h3>Languages</h3>
-        <p>English (Native)</p>
+        <h3>Certifications</h3>
+        <p>Salesloft Admin</p>
+        <p>Outreach Admin</p>
+        <p>Drift Partner Certified</p>
+        <p style="opacity:.7;">Salesforce Admin (In Progress)</p>
+        <p style="opacity:.7;">Gong Certification (In Progress)</p>
         <div class="gap"></div>
-        <h3>Interests</h3>
-        <p>✈️ International Travel</p>
-        <p>🥾 Hiking & National Parks</p>
-        <p>🍽️ Food Exploration</p>
-        <p>🐾 Presley Adventures</p>
+        <h3>Tools</h3>
+        <p>Gong · Salesloft · Outreach</p>
+        <p>Salesforce · ZoomInfo</p>
+        <p>LeadIQ · Lusha · Relevance AI</p>
+        <p>Vidyard · Seismic · Asana</p>
+        <p>Confluence · Slack · Zoom</p>
+        <p>Microsoft & Google Suite</p>
       </div>
       <div class="resume-main">
         <h3>Experience</h3>
         <div class="resume-entry">
-          <h4>Technical GTM Consultant</h4>
-          <span>RevShoppe · Current</span>
-          <p>Add a description of your role, responsibilities, and key achievements here.</p>
+          <h4>Technical Consultant · Tech Lead · Lead Implementation Consultant</h4>
+          <span>RevShoppe · Oct 2022 – Present</span>
+          <p>Administered GTM productivity and enablement tooling across Salesloft, Outreach, and Salesforce — maintaining structured processes, monitoring adoption KPIs, and delivering weekly and monthly usage reporting. Led platform migrations and full-cycle implementations end-to-end, including user provisioning, workflow configuration, enablement, and change management to drive fast time-to-value.</p>
+          <p style="margin-top:8px;color:var(--mid);font-size:.85rem;line-height:1.6;">Produced executive-ready dashboards on activity and usage trends, identified adoption gaps, and implemented action plans to increase engagement and ROI. Built and maintained content and process governance — tagging standards, documentation, templates, and repeatable workflows — to improve consistency across end users and managers. Partnered cross-functionally with Sales, Marketing, and Operations to drive consistent GTM execution from onboarding through renewal.</p>
         </div>
         <div class="resume-entry">
-          <h4>Previous Role Title</h4>
-          <span>Company Name · Years</span>
-          <p>Add description of your previous role here.</p>
-        </div>
-        <div class="resume-entry">
-          <h4>Previous Role Title</h4>
-          <span>Company Name · Years</span>
-          <p>Add description of your previous role here.</p>
+          <h4>Senior Sales Development Representative</h4>
+          <span>PatientPop · July 2021 – Oct 2022</span>
+          <p>Conducted outbound prospecting to identify and qualify customers across Nashville, TN and Austin, TX markets. Consistently achieved or exceeded sales targets and KPIs while tailoring messaging to prospect pain points and goals. Collaborated with AEs on deal strategy, handled objections, and built strong prospect relationships to drive pipeline and closed-won outcomes.</p>
         </div>
       </div>
     </div>
@@ -764,35 +594,9 @@ footer .script{font-family:'Dancing Script',cursive;font-size:1.4rem;color:var(-
     <p>A collection of work, side projects, and things I'm proud of — both professional and personal.</p>
   </div>
   <div class="pro-grid fade-in">
-    <div class="pro-card" style="grid-column:span 2;">
-      <h3>🚀 Add Your First Project</h3>
-      <p style="color:var(--mid);font-size:.92rem;line-height:1.9;margin-bottom:16px;">This is where you can showcase case studies, side projects, initiatives you've led, or anything you've built that you're proud of.</p>
-      <p style="color:var(--mid);font-size:.88rem;font-style:italic;">Update this section with your real projects and I'll help you design each card!</p>
-    </div>
-    <div class="pro-card">
-      <h3>📌 Project Template</h3>
-      <div class="job-item">
-        <h4>Project Title</h4>
-        <div class="co">Type of project</div>
-        <div class="yr">Year</div>
-        <p>Short description of what you built, the problem it solved, and the impact it had.</p>
-      </div>
-      <div style="margin-top:16px;display:flex;flex-wrap:wrap;gap:6px;">
-        <span class="skill-tag">Tool 1</span><span class="skill-tag">Tool 2</span><span class="skill-tag">Tool 3</span>
-      </div>
-    </div>
-    <div class="pro-card">
-      <h3>📌 Project Template</h3>
-      <div class="job-item">
-        <h4>Project Title</h4>
-        <div class="co">Type of project</div>
-        <div class="yr">Year</div>
-        <p>Short description of what you built, the problem it solved, and the impact it had.</p>
-      </div>
-      <div style="margin-top:16px;display:flex;flex-wrap:wrap;gap:6px;">
-        <span class="skill-tag">Tool 1</span><span class="skill-tag">Tool 2</span><span class="skill-tag">Tool 3</span>
-      </div>
-    </div>
+    <div class="pro-card" style="grid-column:span 2;"><h3>🚀 Add Your First Project</h3><p style="color:var(--mid);font-size:.92rem;line-height:1.9;margin-bottom:16px;">Showcase case studies, side projects, initiatives you've led, or anything you've built that you're proud of.</p><p style="color:var(--mid);font-size:.88rem;font-style:italic;">Update this section with your real projects and I'll help you design each card!</p></div>
+    <div class="pro-card"><h3>📌 Project Template</h3><div class="job-item"><h4>Project Title</h4><div class="co">Type of project</div><div class="yr">Year</div><p>Short description of what you built, the problem it solved, and the impact it had.</p></div><div style="margin-top:16px;display:flex;flex-wrap:wrap;gap:6px;"><span class="skill-tag">Tool 1</span><span class="skill-tag">Tool 2</span><span class="skill-tag">Tool 3</span></div></div>
+    <div class="pro-card"><h3>📌 Project Template</h3><div class="job-item"><h4>Project Title</h4><div class="co">Type of project</div><div class="yr">Year</div><p>Short description of what you built, the problem it solved, and the impact it had.</p></div><div style="margin-top:16px;display:flex;flex-wrap:wrap;gap:6px;"><span class="skill-tag">Tool 1</span><span class="skill-tag">Tool 2</span><span class="skill-tag">Tool 3</span></div></div>
   </div>
 </div>
 
@@ -810,27 +614,9 @@ footer .script{font-family:'Dancing Script',cursive;font-size:1.4rem;color:var(-
   <div class="contact-grid fade-in">
     <div class="contact-links">
       <h3>Find Me Here</h3>
-      <a class="c-link" href="mailto:alleeramirez.97@gmail.com">
-        <div class="c-icon" style="background:linear-gradient(135deg,#fde8e4,#f4a59a);">📧</div>
-        <div>
-          <div style="font-size:.7rem;text-transform:uppercase;letter-spacing:1.5px;font-weight:700;color:var(--mid);margin-bottom:3px;">Email</div>
-          <div style="font-size:.92rem;font-weight:700;color:var(--dark);">alleeramirez.97@gmail.com</div>
-        </div>
-      </a>
-      <a class="c-link" href="https://www.linkedin.com/in/alleeramirez/" target="_blank">
-        <div class="c-icon" style="background:linear-gradient(135deg,#dce8f4,#a0b8d4);">💼</div>
-        <div>
-          <div style="font-size:.7rem;text-transform:uppercase;letter-spacing:1.5px;font-weight:700;color:var(--mid);margin-bottom:3px;">LinkedIn</div>
-          <div style="font-size:.92rem;font-weight:700;color:var(--dark);">linkedin.com/in/alleeramirez</div>
-        </div>
-      </a>
-      <a class="c-link" href="#">
-        <div class="c-icon" style="background:linear-gradient(135deg,#f9d5cf,#e8c14a);">📸</div>
-        <div>
-          <div style="font-size:.7rem;text-transform:uppercase;letter-spacing:1.5px;font-weight:700;color:var(--mid);margin-bottom:3px;">Instagram</div>
-          <div style="font-size:.92rem;font-weight:700;color:var(--dark);">Coming soon!</div>
-        </div>
-      </a>
+      <a class="c-link" href="mailto:alleeramirez.97@gmail.com"><div class="c-icon" style="background:linear-gradient(135deg,#fde8e4,#f4a59a);">📧</div><div><div style="font-size:.7rem;text-transform:uppercase;letter-spacing:1.5px;font-weight:700;color:var(--mid);margin-bottom:3px;">Email</div><div style="font-size:.92rem;font-weight:700;">alleeramirez.97@gmail.com</div></div></a>
+      <a class="c-link" href="https://www.linkedin.com/in/alleeramirez/" target="_blank"><div class="c-icon" style="background:linear-gradient(135deg,#dce8f4,#a0b8d4);">💼</div><div><div style="font-size:.7rem;text-transform:uppercase;letter-spacing:1.5px;font-weight:700;color:var(--mid);margin-bottom:3px;">LinkedIn</div><div style="font-size:.92rem;font-weight:700;">linkedin.com/in/alleeramirez</div></div></a>
+      <a class="c-link" href="#"><div class="c-icon" style="background:linear-gradient(135deg,#f9d5cf,#e8c14a);">📸</div><div><div style="font-size:.7rem;text-transform:uppercase;letter-spacing:1.5px;font-weight:700;color:var(--mid);margin-bottom:3px;">Instagram</div><div style="font-size:.92rem;font-weight:700;">Coming soon!</div></div></a>
     </div>
     <div class="contact-form-wrap">
       <h3>Send a Message ✉️</h3>
@@ -843,155 +629,176 @@ footer .script{font-family:'Dancing Script',cursive;font-size:1.4rem;color:var(-
 </div>
 
 <footer>
-  <span class="script">Allee Ramirez</span>
-  Made with <span>♥</span> & wanderlust · 2025
+  <p class="footer-quote">"There is a version of you 10 years from now that is begging this version of yourself to enjoy where you currently are just a little bit more."</p>
+  <div class="footer-line"></div>
+  <span class="footer-name">Allee Ramirez</span>
 </footer>
 
 <script>
-/* ---- BUTTON RIPPLE ---- */
-document.addEventListener('click',e=>{
-  const btn=e.target.closest('.btn');
-  if(!btn) return;
-  const r=document.createElement('span');
-  r.className='ripple';
-  const rect=btn.getBoundingClientRect();
-  const size=Math.max(rect.width,rect.height);
-  r.style.cssText=`width:${size}px;height:${size}px;left:${e.clientX-rect.left-size/2}px;top:${e.clientY-rect.top-size/2}px;`;
-  btn.appendChild(r);
-  setTimeout(()=>r.remove(),700);
+/* ---- WAVE NAME + TYPING ---- */
+window.addEventListener('load', function(){
+  // Wave letters
+  var wn = document.getElementById('waveName');
+  if(wn){
+    var letters = 'Allee'.split('');
+    wn.innerHTML = '';
+    letters.forEach(function(l, i){
+      var s = document.createElement('span');
+      s.className = 'wl';
+      s.textContent = l;
+      s.style.animationDelay = (i * 0.12) + 's';
+      wn.appendChild(s);
+    });
+  }
+  // Typing
+  var fullText = 'Technical GTM Consultant. World Traveler. Hiker & Foodie. Dog Mom to Presley.';
+  var tci = 0, tTyping = true;
+  function runTyping(){
+    var el = document.getElementById('typedText');
+    if(!el) return;
+    if(tTyping){
+      el.textContent = fullText.slice(0, tci);
+      tci++;
+      if(tci > fullText.length){ tTyping = false; setTimeout(runTyping, 1500); return; }
+      setTimeout(runTyping, 60);
+    } else {
+      el.textContent = fullText.slice(0, tci);
+      tci--;
+      if(tci < 0){ tci = 0; tTyping = true; setTimeout(runTyping, 400); return; }
+      setTimeout(runTyping, 25);
+    }
+  }
+  setTimeout(runTyping, 800);
 });
 
-/* ---- ANIMATED COUNTERS ---- */
+/* ---- BUTTON RIPPLE ---- */
+document.addEventListener('click', function(e){
+  var btn = e.target.closest('.btn');
+  if(!btn) return;
+  var r = document.createElement('span');
+  r.className = 'ripple';
+  var rect = btn.getBoundingClientRect();
+  var size = Math.max(rect.width, rect.height);
+  r.style.cssText = 'width:'+size+'px;height:'+size+'px;left:'+(e.clientX-rect.left-size/2)+'px;top:'+(e.clientY-rect.top-size/2)+'px;';
+  btn.appendChild(r);
+  setTimeout(function(){ r.remove(); }, 700);
+});
+
+/* ---- COUNTERS ---- */
 function animateCounter(el){
   if(el.dataset.animated) return;
-  el.dataset.animated=true;
-  const target=+el.dataset.target;
-  const suffix=el.dataset.suffix||'';
-  let current=0;
-  const step=Math.ceil(target/40);
-  const timer=setInterval(()=>{
-    current=Math.min(current+step,target);
-    el.textContent=current+suffix;
-    if(current>=target) clearInterval(timer);
-  },40);
+  el.dataset.animated = 'true';
+  var target = +el.dataset.target;
+  var suffix = el.dataset.suffix || '';
+  var current = 0;
+  var step = Math.ceil(target/40);
+  var timer = setInterval(function(){
+    current = Math.min(current+step, target);
+    el.textContent = current + suffix;
+    if(current >= target) clearInterval(timer);
+  }, 40);
 }
 function checkCounters(){
-  document.querySelectorAll('.counter').forEach(el=>{
-    const r=el.getBoundingClientRect();
-    if(r.top<window.innerHeight-40) animateCounter(el);
+  document.querySelectorAll('.counter').forEach(function(el){
+    var r = el.getBoundingClientRect();
+    if(r.top < window.innerHeight - 40) animateCounter(el);
   });
 }
-window.addEventListener('scroll',checkCounters);
+window.addEventListener('scroll', checkCounters);
 
 /* ---- PRESLEY EASTER EGG ---- */
-document.addEventListener('click',e=>{
-  const txt=e.target.textContent||'';
+document.addEventListener('click', function(e){
+  var txt = e.target.textContent || '';
   if(!txt.toLowerCase().includes('presley')) return;
-  for(let i=0;i<8;i++){
-    setTimeout(()=>{
-      const p=document.createElement('div');
-      p.className='paw';
-      p.textContent='🐾';
-      p.style.cssText=`left:${Math.random()*window.innerWidth}px;top:${Math.random()*window.innerHeight}px;font-size:${1.2+Math.random()*1.4}rem;animation-delay:${i*0.08}s;`;
-      document.body.appendChild(p);
-      setTimeout(()=>p.remove(),1400);
-    },i*80);
+  for(var i=0;i<8;i++){
+    (function(i){
+      setTimeout(function(){
+        var p = document.createElement('div');
+        p.className = 'paw';
+        p.textContent = '🐾';
+        p.style.cssText = 'position:fixed;left:'+Math.random()*window.innerWidth+'px;top:'+Math.random()*window.innerHeight+'px;font-size:'+(1.2+Math.random()*1.4)+'rem;animation-delay:'+(i*0.08)+'s;pointer-events:none;z-index:9998;animation:paw-float 1.2s ease-out forwards;';
+        document.body.appendChild(p);
+        setTimeout(function(){ p.remove(); }, 1400);
+      }, i*80);
+    })(i);
   }
 });
 
-/* ---- PAGE TRANSITIONS ---- */
+/* ---- CURSOR SPARKLE ---- */
+var sparkSymbols = ['✦','★','✧','✶','✸'];
+document.addEventListener('mousemove', function(e){
+  if(Math.random() > 0.3) return;
+  var s = document.createElement('div');
+  s.className = 'sparkle';
+  s.textContent = sparkSymbols[Math.floor(Math.random()*sparkSymbols.length)];
+  s.style.cssText = 'left:'+(e.clientX+Math.random()*20-10)+'px;top:'+(e.clientY+Math.random()*20-10)+'px;color:'+(Math.random()>.5?'#e8c14a':'#e8796a')+';font-size:'+(10+Math.random()*10)+'px;';
+  document.body.appendChild(s);
+  setTimeout(function(){ s.remove(); }, 800);
+});
+
+/* ---- FADE IN ---- */
+function initFadeIns(){
+  document.querySelectorAll('.page.active .fade-in').forEach(function(el){ el.classList.remove('visible'); });
+  setTimeout(checkFades, 100);
+}
+function checkFades(){
+  document.querySelectorAll('.page.active .fade-in:not(.visible)').forEach(function(el){
+    var r = el.getBoundingClientRect();
+    if(r.top < window.innerHeight - 60) el.classList.add('visible');
+  });
+}
+window.addEventListener('scroll', checkFades);
+
+/* ---- PAGE NAV ---- */
 function show(id){
-  const prev=document.querySelector('.page.active');
-  if(prev) prev.classList.remove('active');
-  const next=document.getElementById(id);
-  next.classList.add('active');
+  document.querySelector('.page.active').classList.remove('active');
+  document.getElementById(id).classList.add('active');
   window.scrollTo(0,0);
   closeMenu();
   initFadeIns();
   checkCounters();
 }
-function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
-function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');}
+function toggleMenu(){ document.getElementById('mobileMenu').classList.toggle('open'); }
+function closeMenu(){ document.getElementById('mobileMenu').classList.remove('open'); }
 
-/* ---- TYPING ANIMATION ---- */
-const phrases=['Technical GTM Consultant.','World Traveler.','Hiker & Foodie.','Dog Mom to Presley.'];
-let pi=0,ci=0,deleting=false;
-const typed=document.getElementById('typedText');
-function type(){
-  if(!typed) return;
-  const cur=phrases[pi];
-  if(!deleting){
-    typed.textContent=cur.slice(0,ci+1);
-    ci++;
-    if(ci===cur.length){setTimeout(()=>{deleting=true;},1800);setTimeout(type,1800);return;}
-  } else {
-    typed.textContent=cur.slice(0,ci-1);
-    ci--;
-    if(ci===0){deleting=false;pi=(pi+1)%phrases.length;}
-  }
-  setTimeout(type,deleting?60:90);
-}
-document.addEventListener('DOMContentLoaded',()=>setTimeout(type,600));
-
-/* ---- CURSOR SPARKLE ---- */
-const stars=['✦','★','✧','✶','✸'];
-document.addEventListener('mousemove',e=>{
-  if(Math.random()>0.3) return;
-  const s=document.createElement('div');
-  s.className='sparkle';
-  s.textContent=stars[Math.floor(Math.random()*stars.length)];
-  s.style.cssText=`left:${e.clientX+Math.random()*20-10}px;top:${e.clientY+Math.random()*20-10}px;color:${Math.random()>.5?'#e8c14a':'#e8796a'};font-size:${10+Math.random()*10}px;`;
-  document.body.appendChild(s);
-  setTimeout(()=>s.remove(),800);
-});
-
-/* ---- FADE IN ON SCROLL ---- */
-function initFadeIns(){
-  document.querySelectorAll('.page.active .fade-in').forEach(el=>el.classList.remove('visible'));
-  setTimeout(checkFades,100);
-}
-function checkFades(){
-  document.querySelectorAll('.page.active .fade-in:not(.visible)').forEach(el=>{
-    const r=el.getBoundingClientRect();
-    if(r.top<window.innerHeight-60) el.classList.add('visible');
-  });
-}
-window.addEventListener('scroll',checkFades);
-document.addEventListener('DOMContentLoaded',()=>{
-  initFadeIns();checkFades();
-  document.querySelectorAll('.park-tag[data-loc]').forEach(tag=>{
-    const tip=document.createElement('span');
-    tip.className='park-tooltip';
-    tip.textContent='📍 '+tag.dataset.loc;
+/* ---- PARK TOOLTIPS ---- */
+document.addEventListener('DOMContentLoaded', function(){
+  initFadeIns(); checkFades();
+  document.querySelectorAll('.park-tag[data-loc]').forEach(function(tag){
+    var tip = document.createElement('span');
+    tip.className = 'park-tooltip';
+    tip.textContent = '📍 ' + tag.dataset.loc;
     tag.appendChild(tip);
   });
 });
 
-/* ---- TRAVEL LIGHTBOX ---- */
-const destinations={
-  portugal:{flag:'🇵🇹',title:'Portugal',sub:'Lisbon · Porto · Algarve · August 2024',story:'A whole month soaking up Portugal — from the colorful tiles and pastel de natas of Lisbon, to the stunning cliffs of the Algarve, to the charming wine bars of Porto. Working remotely from cafés while watching the sun set over the Tagus River? Absolutely unbeatable.',photos:['portugal-1.jpg','portugal-2.jpg','portugal-3.jpg','portugal-4.jpg']},
-  spain:{flag:'🇪🇸',title:'Spain',sub:'Barcelona · Valencia · Seville · September 2024',story:'Two weeks of tapas, late nights, and pure magic. Gaudí\'s architecture in Barcelona, paella in Valencia, and flamenco in Seville. Spain has a way of making you feel alive in every single moment.',photos:['spain-1.jpg','spain-2.jpg','spain-3.jpg','spain-4.jpg']},
-  italy:{flag:'🇮🇹',title:'Italy',sub:'Florence · September 2024',story:'Two weeks living like a Florentine — wandering the Uffizi, eating the most incredible pasta, and crossing the Ponte Vecchio at golden hour. Florence stole a little piece of my heart.',photos:['italy-1.jpg','italy-2.jpg','italy-3.jpg','italy-4.jpg']},
-  peru:{flag:'🇵🇪',title:'Peru',sub:'Lima · Cusco · Huacachina · Aguas Calientes · May 2025',story:'Standing at Machu Picchu is one of those life moments you can\'t fully prepare for. The Andes, the ancient ruins, the vibrant culture and incredible people — Peru is breathtaking in every way.',photos:['peru-1.jpg','peru-2.jpg','peru-3.jpg','peru-4.jpg']},
-  singapore:{flag:'🇸🇬',title:'Singapore',sub:'Singapore City · January 2020',story:'A city that somehow fits every culture, cuisine and architectural wonder into one tiny island. Singapore was my first taste of Southeast Asia and it completely hooked me.',photos:['singapore-1.jpg','singapore-2.jpg','singapore-3.jpg','singapore-4.jpg']},
-  malaysia:{flag:'🇲🇾',title:'Malaysia',sub:'Kuala Lumpur & beyond · January 2020',story:'From the street food in Penang to the rainforests of Borneo, Malaysia is endlessly diverse and delicious. One of the most underrated destinations I\'ve ever visited.',photos:['malaysia-1.jpg','malaysia-2.jpg','malaysia-3.jpg','malaysia-4.jpg']},
-  indonesia:{flag:'🇮🇩',title:'Indonesia',sub:'Ubud · Bali · Lombok · January 2020',story:'Bali\'s temples, the rice terraces, and swimming with manta rays in Lombok — Indonesia is pure magic. Every island has its own personality and energy.',photos:['indonesia-1.jpg','indonesia-2.jpg','indonesia-3.jpg','indonesia-4.jpg']},
-  mexico:{flag:'🇲🇽',title:'Mexico',sub:'Mexico City · February 2023',story:'Mexico\'s colors, flavors and people are like nowhere else on earth. The food alone is worth the trip — tacossss! ¡Muy sabroso!',photos:['mexico-1.jpg','mexico-2.jpg','mexico-3.jpg','mexico-4.jpg']},
-  canada:{flag:'🇨🇦',title:'Canada',sub:'Alberta · January 2024',story:'The Canadian Rockies are some of the most dramatic landscapes I\'ve ever seen. Hiking Banff National Park — absolutely UNREAL. It belongs on every nature lover\'s bucket list.',photos:['canada-1.jpg','canada-2.jpg','canada-3.jpg','canada-4.jpg']}
+/* ---- LIGHTBOX ---- */
+var destinations = {
+  portugal:{flag:'🇵🇹',title:'Portugal',sub:'Lisbon · Porto · Algarve · August 2024',story:'A whole month soaking up Portugal — from the colorful tiles and pastel de natas of Lisbon, to the stunning cliffs of the Algarve, to the charming wine bars of Porto.',photos:['portugal-1.jpg','portugal-2.jpg','portugal-3.jpg','portugal-4.jpg']},
+  spain:{flag:'🇪🇸',title:'Spain',sub:'Barcelona · Valencia · Seville · September 2024',story:'Two weeks of tapas, late nights, and pure magic. Gaudí\'s architecture in Barcelona, paella in Valencia, and flamenco in Seville.',photos:['spain-1.jpg','spain-2.jpg','spain-3.jpg','spain-4.jpg']},
+  italy:{flag:'🇮🇹',title:'Italy',sub:'Florence · September 2024',story:'Two weeks living like a Florentine — wandering the Uffizi, eating incredible pasta, and crossing the Ponte Vecchio at golden hour.',photos:['italy-1.jpg','italy-2.jpg','italy-3.jpg','italy-4.jpg']},
+  peru:{flag:'🇵🇪',title:'Peru',sub:'Lima · Cusco · Huacachina · Aguas Calientes · May 2025',story:'Standing at Machu Picchu is one of those life moments you can\'t fully prepare for. The Andes, the ancient ruins, the vibrant culture — Peru is breathtaking.',photos:['peru-1.jpg','peru-2.jpg','peru-3.jpg','peru-4.jpg']},
+  singapore:{flag:'🇸🇬',title:'Singapore',sub:'Singapore City · January 2020',story:'A city that somehow fits every culture, cuisine and architectural wonder into one tiny island. Singapore was my first taste of Southeast Asia.',photos:['singapore-1.jpg','singapore-2.jpg','singapore-3.jpg','singapore-4.jpg']},
+  malaysia:{flag:'🇲🇾',title:'Malaysia',sub:'Kuala Lumpur & beyond · January 2020',story:'From the street food in Penang to the rainforests of Borneo, Malaysia is endlessly diverse and delicious.',photos:['malaysia-1.jpg','malaysia-2.jpg','malaysia-3.jpg','malaysia-4.jpg']},
+  indonesia:{flag:'🇮🇩',title:'Indonesia',sub:'Ubud · Bali · Lombok · January 2020',story:'Bali\'s temples, the rice terraces, and swimming with manta rays in Lombok — Indonesia is pure magic.',photos:['indonesia-1.jpg','indonesia-2.jpg','indonesia-3.jpg','indonesia-4.jpg']},
+  mexico:{flag:'🇲🇽',title:'Mexico',sub:'Mexico City · February 2023',story:'Mexico\'s colors, flavors and people are like nowhere else on earth. Tacossss! ¡Muy sabroso!',photos:['mexico-1.jpg','mexico-2.jpg','mexico-3.jpg','mexico-4.jpg']},
+  canada:{flag:'🇨🇦',title:'Canada',sub:'Alberta · January 2024',story:'The Canadian Rockies are some of the most dramatic landscapes I\'ve ever seen. Hiking Banff — absolutely UNREAL.',photos:['canada-1.jpg','canada-2.jpg','canada-3.jpg','canada-4.jpg']}
 };
 function openGallery(key){
-  const d=destinations[key];
-  document.getElementById('lbFlag').textContent=d.flag;
-  document.getElementById('lbTitle').textContent=d.title;
-  document.getElementById('lbSub').textContent=d.sub;
-  document.getElementById('lbStory').textContent=d.story;
-  document.getElementById('lbPhotos').innerHTML=d.photos.map((p,i)=>`<div class="lb-photo"><img src="${p}" alt="${d.title} ${i+1}" onerror="this.parentElement.innerHTML='📸 Photo coming soon!'"/></div>`).join('');
+  var d = destinations[key];
+  document.getElementById('lbFlag').textContent = d.flag;
+  document.getElementById('lbTitle').textContent = d.title;
+  document.getElementById('lbSub').textContent = d.sub;
+  document.getElementById('lbStory').textContent = d.story;
+  document.getElementById('lbPhotos').innerHTML = d.photos.map(function(p,i){
+    return '<div class="lb-photo"><img src="'+p+'" alt="'+d.title+' '+(i+1)+'" onerror="this.parentElement.innerHTML=\'📸 Photo coming soon!\'"/></div>';
+  }).join('');
   document.getElementById('lightbox').classList.add('open');
-  document.body.style.overflow='hidden';
+  document.body.style.overflow = 'hidden';
 }
 function closeLightbox(){
   document.getElementById('lightbox').classList.remove('open');
-  document.body.style.overflow='';
+  document.body.style.overflow = '';
 }
 </script>
 </body>
